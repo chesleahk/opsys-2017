@@ -109,6 +109,11 @@ struct thread {
 	bool t_did_reserve_buffers;	/* reserve_buffers() in effect */
 
 	/* add more here as needed */
+
+	struct thread *child; 
+	struct thread *parent; 
+	struct lock* lk_join; 
+	struct cv* cv_join; 
 };
 
 /*
@@ -165,6 +170,7 @@ void thread_yield(void);
  */
 void schedule(void);
 
+void thread_join(void); 
 /*
  * Potentially migrate ready threads to other CPUs. Called from the
  * timer interrupt.

@@ -150,7 +150,12 @@ thread_create(const char *name)
 	thread->t_did_reserve_buffers = false;
 
 	/* If you add to struct thread, be sure to initialize here */
-
+	
+	thread->child = NULL; 
+	thread->parent = NULL;
+	thread->lk_join = NULL; 
+	thread->cv_join = NULL; 
+ 
 	return thread;
 }
 
@@ -544,6 +549,14 @@ thread_fork(const char *name,
 	/* Set up the switchframe so entrypoint() gets called */
 	switchframe_init(newthread, entrypoint, data1, data2);
 
+
+	//link child to parent 
+
+	curthread->child = newthread; 
+	newthread->parent = curthread; 
+
+	curthread->lk_join = lock_create("lock join"); 
+	curthread->cv_join = cv_create("CV join"); 
 	/* Lock the current cpu's run queue and make the new thread runnable */
 	thread_make_runnable(newthread, false);
 
@@ -725,6 +738,7 @@ thread_switch(threadstate_t newstate, struct wchan *wc, struct spinlock *lk)
 
 	/* Clean up dead threads. */
 	exorcise();
+	// lmao i love this name hahahahahha
 
 	/* Turn interrupts back on. */
 	splx(spl);
@@ -799,10 +813,18 @@ thread_exit(void)
 	/* Check the stack guard band. */
 	thread_checkstack(cur);
 
+	if(cur->parent != NULL)
+	{
+		lock_acquire(cur->parent->lk_join); 
+		cur->parent->child = NULL; 
+		cv_signal(cur->parent->cv_join, cur->parent->lk_join); 
+		lock_release(cur->parent->lk_join); 
+	}
+
 	/* Interrupts off on this processor */
         splhigh();
 	thread_switch(S_ZOMBIE, NULL, NULL);
-	panic("braaaaaaaiiiiiiiiiiinssssss\n");
+	panic("braaaaaaaiiiiiiiiiiinssssss\n");   /// LOLOLOLOL
 }
 
 /*
@@ -830,6 +852,33 @@ schedule(void)
 	 * You can write this. If we do nothing, threads will run in
 	 * round-robin fashion.
 	 */
+}
+
+void thread_join(void)
+{
+	/*
+		Goal: the parent use the function to wait for the child to complete. 
+		
+		Needs an status to indicate if the child is complete. Child will set when it is terminating. 
+		Parent will check for the status. 
+
+		So we need a lock to make sure we can protect it. 
+
+		A wchan is needed for the parent to sleep and wait. A CV for the parent to be waken up when the child terms. 
+
+
+	 */
+
+	lock_acquire(curthread->lk_join); 
+	
+	// make sure only the parent can enter . 
+	while(curthread->child != NULL)
+	{
+		cv_wait(curthread->cv_join, curthread->lk_join); 
+		//wchan????
+	}
+
+	lock_release(curthread->lk_join); 
 }
 
 /*

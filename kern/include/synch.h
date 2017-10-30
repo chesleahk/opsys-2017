@@ -73,8 +73,15 @@ void V(struct semaphore *);
  * (should be) made internally.
  */
 struct lock {
-        char *lk_name;
-        // add what you need here
+        char *lk_name;  // this was given 
+  
+	struct thread *lk_owner; // added this to mark the current owner 
+ 	volatile bool is_locked; // how to combine ^^ and <<< to one??
+	// has to include a flag to mark if it is locked!! has to be volatile!
+
+	struct wchan *lk_wchan; // has to include for processes to wait in
+
+	struct spinlock lk_spinlock; // included to protect all these above!!
         // (don't forget to mark things volatile as needed)
 };
 
@@ -112,9 +119,13 @@ bool lock_do_i_hold(struct lock *);
  */
 
 struct cv {
-        char *cv_name;
-        // add what you need here
-        // (don't forget to mark things volatile as needed)
+        char *cv_name;// given to us 
+	
+	struct wchan *cv_wchan;  // a queue for processes to wait in 
+        // (don't forget to mark things volatile as needed) // not needed 
+	// for this project because of the appendices say so :) 
+	
+	struct spinlock cv_spinlock; // protects the queue!
 };
 
 struct cv *cv_create(const char *name);
