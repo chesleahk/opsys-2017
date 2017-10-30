@@ -527,6 +527,16 @@ thread_fork(const char *name,
 
 	/* Thread subsystem fields */
 	newthread->t_cpu = curthread->t_cpu;
+	
+	// ASST1 added  
+
+	curthread->child = newthread; 
+	newthread->parent = curthread;
+	newthread->parent->complete = false; 
+	 
+
+	curthread->lk_join = lock_create("lock join"); 
+	curthread->cv_join = cv_create("CV join"); 
 
 	/* Attach the new thread to its process */
 	if (proc == NULL) {
@@ -550,13 +560,6 @@ thread_fork(const char *name,
 	switchframe_init(newthread, entrypoint, data1, data2);
 
 
-	//link child to parent 
-
-	curthread->child = newthread; 
-	newthread->parent = curthread; 
-
-	curthread->lk_join = lock_create("lock join"); 
-	curthread->cv_join = cv_create("CV join"); 
 	/* Lock the current cpu's run queue and make the new thread runnable */
 	thread_make_runnable(newthread, false);
 
@@ -871,12 +874,24 @@ void thread_join(void)
 
 	lock_acquire(curthread->lk_join); 
 	
-	// make sure only the parent can enter . 
-	while(curthread->child != NULL)
+/*	if(!curthread->complete)
 	{
-		cv_wait(curthread->cv_join, curthread->lk_join); 
-		//wchan????
+		while(!curthread->complete)
+		{
+			wchan_sleep(&curthread->cv_join, &curthread->lk_join); 
+		}
+		//lock_release(curthread->lk_join); 
 	}
+	// make sure only the parent can enter . 
+	else
+	{
+	*/	while(curthread->child != NULL)
+		{
+			//cv_signal(&curthread->cv_join, curthread->lk_join); 
+			cv_wait(curthread->cv_join, curthread->lk_join); 
+		//wchan????
+		}
+	//}
 
 	lock_release(curthread->lk_join); 
 }

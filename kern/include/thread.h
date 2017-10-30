@@ -114,6 +114,10 @@ struct thread {
 	struct thread *parent; 
 	struct lock* lk_join; 
 	struct cv* cv_join; 
+	struct wchan* t_wchan; 
+
+	bool complete; 
+	// int child; 
 };
 
 /*

@@ -1,0 +1,4329 @@
+diff --git a/cfk14d.tar b/cfk14d.tar
+new file mode 100644
+index 0000000..7e7c8e7
+Binary files /dev/null and b/cfk14d.tar differ
+diff --git a/kern/build b/kern/build
+new file mode 120000
+index 0000000..04e1455
+--- /dev/null
++++ b/kern/build
+@@ -0,0 +1 @@
++../build/kern
+\ No newline at end of file
+diff --git a/kern/compile/ASST1/.depend b/kern/compile/ASST1/.depend
+new file mode 100644
+index 0000000..51e48eb
+--- /dev/null
++++ b/kern/compile/ASST1/.depend
+@@ -0,0 +1,904 @@
++__printf.o: ../../../common/libc/printf/__printf.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/stdarg.h
++snprintf.o: ../../../common/libc/printf/snprintf.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/stdarg.h
++atoi.o: ../../../common/libc/stdlib/atoi.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h
++bzero.o: ../../../common/libc/string/bzero.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h
++memcpy.o: ../../../common/libc/string/memcpy.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h
++memmove.o: ../../../common/libc/string/memmove.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h
++memset.o: ../../../common/libc/string/memset.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h
++strcat.o: ../../../common/libc/string/strcat.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h
++strchr.o: ../../../common/libc/string/strchr.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h
++strcmp.o: ../../../common/libc/string/strcmp.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h
++strcpy.o: ../../../common/libc/string/strcpy.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h
++strlen.o: ../../../common/libc/string/strlen.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h
++strrchr.o: ../../../common/libc/string/strrchr.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h
++strtok_r.o: ../../../common/libc/string/strtok_r.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h
++autoconf.o: ../../compile/ASST1/autoconf.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../compile/ASST1/autoconf.h
++beep.o: ../../dev/generic/beep.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/lib.h ../../include/cdefs.h opt-noasserts.h \
++ ../../dev/generic/beep.h autoconf.h
++console.o: ../../dev/generic/console.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/lib.h ../../include/cdefs.h opt-noasserts.h \
++ ../../include/uio.h ../../include/kern/iovec.h ../../include/cpu.h \
++ ../../include/spinlock.h includelinks/machine/spinlock.h \
++ ../../include/threadlist.h includelinks/machine/vm.h \
++ ../../include/thread.h ../../include/array.h \
++ includelinks/machine/thread.h ../../include/setjmp.h \
++ includelinks/kern/machine/setjmp.h ../../include/current.h \
++ includelinks/machine/current.h ../../include/synch.h \
++ ../../dev/generic/console.h ../../include/vfs.h ../../include/device.h \
++ autoconf.h
++random.o: ../../dev/generic/random.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/kern/fcntl.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/uio.h ../../include/kern/iovec.h \
++ ../../include/vfs.h ../../include/array.h ../../dev/generic/random.h \
++ ../../include/device.h autoconf.h
++rtclock.o: ../../dev/generic/rtclock.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/lib.h ../../include/cdefs.h opt-noasserts.h \
++ ../../include/clock.h ../../include/kern/time.h \
++ ../../dev/generic/rtclock.h autoconf.h
++beep_ltimer.o: ../../dev/lamebus/beep_ltimer.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../dev/generic/beep.h ../../dev/lamebus/ltimer.h \
++ autoconf.h
++con_lser.o: ../../dev/lamebus/con_lser.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../dev/generic/console.h ../../dev/lamebus/lser.h \
++ ../../include/spinlock.h includelinks/machine/spinlock.h autoconf.h
++emu_att.o: ../../dev/lamebus/emu_att.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../dev/lamebus/lamebus.h ../../include/cpu.h \
++ ../../include/spinlock.h includelinks/machine/spinlock.h \
++ ../../include/threadlist.h includelinks/machine/vm.h \
++ ../../dev/lamebus/emu.h autoconf.h
++emu.o: ../../dev/lamebus/emu.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/kern/fcntl.h ../../include/stat.h \
++ ../../include/kern/stat.h ../../include/kern/stattypes.h \
++ ../../include/lib.h ../../include/cdefs.h opt-noasserts.h \
++ ../../include/array.h ../../include/uio.h ../../include/kern/iovec.h \
++ ../../include/membar.h includelinks/machine/membar.h \
++ ../../include/synch.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../dev/lamebus/emu.h \
++ includelinks/platform/bus.h includelinks/machine/vm.h \
++ ../../dev/lamebus/lamebus.h ../../include/cpu.h \
++ ../../include/threadlist.h ../../include/vfs.h ../../include/emufs.h \
++ ../../include/fs.h ../../include/vnode.h autoconf.h
++lamebus.o: ../../dev/lamebus/lamebus.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/cpu.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../include/threadlist.h \
++ includelinks/machine/vm.h ../../include/membar.h \
++ includelinks/machine/membar.h ../../include/current.h \
++ includelinks/machine/current.h ../../include/thread.h \
++ ../../include/array.h includelinks/machine/thread.h \
++ ../../include/setjmp.h includelinks/kern/machine/setjmp.h \
++ ../../dev/lamebus/lamebus.h
++lhd_att.o: ../../dev/lamebus/lhd_att.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../dev/lamebus/lamebus.h ../../include/cpu.h \
++ ../../include/spinlock.h includelinks/machine/spinlock.h \
++ ../../include/threadlist.h includelinks/machine/vm.h \
++ ../../dev/lamebus/lhd.h ../../include/device.h autoconf.h
++lhd.o: ../../dev/lamebus/lhd.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/lib.h ../../include/cdefs.h opt-noasserts.h \
++ ../../include/uio.h ../../include/kern/iovec.h ../../include/membar.h \
++ includelinks/machine/membar.h ../../include/synch.h \
++ ../../include/spinlock.h includelinks/machine/spinlock.h \
++ includelinks/platform/bus.h includelinks/machine/vm.h \
++ ../../dev/lamebus/lamebus.h ../../include/cpu.h \
++ ../../include/threadlist.h ../../include/vfs.h ../../include/array.h \
++ ../../dev/lamebus/lhd.h ../../include/device.h autoconf.h
++lrandom_att.o: ../../dev/lamebus/lrandom_att.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../dev/lamebus/lamebus.h ../../include/cpu.h \
++ ../../include/spinlock.h includelinks/machine/spinlock.h \
++ ../../include/threadlist.h includelinks/machine/vm.h \
++ ../../dev/lamebus/lrandom.h autoconf.h
++lrandom.o: ../../dev/lamebus/lrandom.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/uio.h ../../include/kern/iovec.h \
++ includelinks/platform/bus.h includelinks/machine/vm.h \
++ ../../dev/lamebus/lamebus.h ../../include/cpu.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../include/threadlist.h \
++ ../../dev/lamebus/lrandom.h autoconf.h
++lser_att.o: ../../dev/lamebus/lser_att.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../dev/lamebus/lamebus.h ../../include/cpu.h \
++ ../../include/spinlock.h includelinks/machine/spinlock.h \
++ ../../include/threadlist.h includelinks/machine/vm.h \
++ ../../dev/lamebus/lser.h autoconf.h
++lser.o: ../../dev/lamebus/lser.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/spinlock.h includelinks/machine/spinlock.h \
++ includelinks/platform/bus.h includelinks/machine/vm.h \
++ ../../dev/lamebus/lamebus.h ../../include/cpu.h \
++ ../../include/threadlist.h ../../dev/lamebus/lser.h autoconf.h
++ltimer_att.o: ../../dev/lamebus/ltimer_att.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../dev/lamebus/lamebus.h ../../include/cpu.h \
++ ../../include/spinlock.h includelinks/machine/spinlock.h \
++ ../../include/threadlist.h includelinks/machine/vm.h \
++ ../../dev/lamebus/ltimer.h autoconf.h
++ltimer.o: ../../dev/lamebus/ltimer.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/spl.h ../../include/clock.h \
++ ../../include/kern/time.h includelinks/platform/bus.h \
++ includelinks/machine/vm.h ../../dev/lamebus/lamebus.h \
++ ../../include/cpu.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../include/threadlist.h \
++ ../../dev/lamebus/ltimer.h autoconf.h
++ltrace_att.o: ../../dev/lamebus/ltrace_att.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../dev/lamebus/lamebus.h ../../include/cpu.h \
++ ../../include/spinlock.h includelinks/machine/spinlock.h \
++ ../../include/threadlist.h includelinks/machine/vm.h \
++ ../../dev/lamebus/ltrace.h autoconf.h
++ltrace.o: ../../dev/lamebus/ltrace.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h includelinks/platform/bus.h includelinks/machine/vm.h \
++ ../../dev/lamebus/lamebus.h ../../include/cpu.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../include/threadlist.h \
++ ../../dev/lamebus/ltrace.h autoconf.h
++random_lrandom.o: ../../dev/lamebus/random_lrandom.c \
++ ../../include/types.h ../../include/kern/types.h \
++ includelinks/kern/machine/types.h includelinks/machine/types.h \
++ ../../include/lib.h ../../include/cdefs.h opt-noasserts.h \
++ ../../dev/generic/random.h ../../include/device.h \
++ ../../dev/lamebus/lrandom.h autoconf.h
++rtclock_ltimer.o: ../../dev/lamebus/rtclock_ltimer.c \
++ ../../include/types.h ../../include/kern/types.h \
++ includelinks/kern/machine/types.h includelinks/machine/types.h \
++ ../../include/lib.h ../../include/cdefs.h opt-noasserts.h \
++ ../../dev/generic/rtclock.h ../../dev/lamebus/ltimer.h autoconf.h
++semfs_fsops.o: ../../fs/semfs/semfs_fsops.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/synch.h ../../include/spinlock.h ../../include/cdefs.h \
++ includelinks/machine/spinlock.h ../../include/vfs.h \
++ ../../include/array.h ../../include/lib.h opt-noasserts.h \
++ ../../include/fs.h ../../include/vnode.h ../../fs/semfs/semfs.h
++semfs_obj.o: ../../fs/semfs/semfs_obj.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/synch.h ../../include/spinlock.h ../../include/cdefs.h \
++ includelinks/machine/spinlock.h ../../fs/semfs/semfs.h \
++ ../../include/array.h ../../include/lib.h opt-noasserts.h \
++ ../../include/fs.h ../../include/vnode.h
++semfs_vnops.o: ../../fs/semfs/semfs_vnops.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/kern/fcntl.h ../../include/stat.h \
++ ../../include/kern/stat.h ../../include/kern/stattypes.h \
++ ../../include/uio.h ../../include/kern/iovec.h ../../include/synch.h \
++ ../../include/spinlock.h ../../include/cdefs.h \
++ includelinks/machine/spinlock.h ../../include/thread.h \
++ ../../include/array.h ../../include/lib.h opt-noasserts.h \
++ ../../include/threadlist.h includelinks/machine/thread.h \
++ ../../include/setjmp.h includelinks/kern/machine/setjmp.h \
++ ../../include/proc.h ../../include/current.h \
++ includelinks/machine/current.h ../../include/vfs.h ../../include/vnode.h \
++ ../../fs/semfs/semfs.h ../../include/fs.h
++sfs_balloc.o: ../../fs/sfs/sfs_balloc.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/bitmap.h ../../include/synch.h \
++ ../../include/spinlock.h includelinks/machine/spinlock.h \
++ ../../include/buf.h ../../include/sfs.h ../../include/fs.h \
++ ../../include/vnode.h ../../include/kern/sfs.h ../../fs/sfs/sfsprivate.h \
++ ../../include/uio.h ../../include/kern/iovec.h
++sfs_bmap.o: ../../fs/sfs/sfs_bmap.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/lib.h ../../include/cdefs.h opt-noasserts.h \
++ ../../include/synch.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../include/vfs.h \
++ ../../include/array.h ../../include/buf.h ../../include/sfs.h \
++ ../../include/fs.h ../../include/vnode.h ../../include/kern/sfs.h \
++ ../../fs/sfs/sfsprivate.h ../../include/uio.h ../../include/kern/iovec.h
++sfs_dir.o: ../../fs/sfs/sfs_dir.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/lib.h ../../include/cdefs.h opt-noasserts.h \
++ ../../include/synch.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../include/buf.h ../../include/sfs.h \
++ ../../include/fs.h ../../include/vnode.h ../../include/kern/sfs.h \
++ ../../fs/sfs/sfsprivate.h ../../include/uio.h ../../include/kern/iovec.h
++sfs_fsops.o: ../../fs/sfs/sfs_fsops.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/lib.h ../../include/cdefs.h opt-noasserts.h \
++ ../../include/array.h ../../include/bitmap.h ../../include/synch.h \
++ ../../include/spinlock.h includelinks/machine/spinlock.h \
++ ../../include/uio.h ../../include/kern/iovec.h ../../include/vfs.h \
++ ../../include/buf.h ../../include/device.h ../../include/sfs.h \
++ ../../include/fs.h ../../include/vnode.h ../../include/kern/sfs.h \
++ ../../fs/sfs/sfsprivate.h
++sfs_inode.o: ../../fs/sfs/sfs_inode.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/lib.h ../../include/cdefs.h opt-noasserts.h \
++ ../../include/synch.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../include/thread.h \
++ ../../include/array.h ../../include/threadlist.h \
++ includelinks/machine/thread.h ../../include/setjmp.h \
++ includelinks/kern/machine/setjmp.h ../../include/current.h \
++ includelinks/machine/current.h ../../include/vfs.h ../../include/buf.h \
++ ../../include/sfs.h ../../include/fs.h ../../include/vnode.h \
++ ../../include/kern/sfs.h ../../fs/sfs/sfsprivate.h ../../include/uio.h \
++ ../../include/kern/iovec.h
++sfs_io.o: ../../fs/sfs/sfs_io.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/lib.h ../../include/cdefs.h opt-noasserts.h \
++ ../../include/uio.h ../../include/kern/iovec.h ../../include/synch.h \
++ ../../include/spinlock.h includelinks/machine/spinlock.h \
++ ../../include/vfs.h ../../include/array.h ../../include/buf.h \
++ ../../include/device.h ../../include/sfs.h ../../include/fs.h \
++ ../../include/vnode.h ../../include/kern/sfs.h ../../fs/sfs/sfsprivate.h
++sfs_jphys.o: ../../fs/sfs/sfs_jphys.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/lib.h ../../include/cdefs.h opt-noasserts.h \
++ ../../include/wchan.h ../../include/synch.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../include/proc.h \
++ ../../include/current.h includelinks/machine/current.h \
++ ../../include/thread.h ../../include/array.h ../../include/threadlist.h \
++ includelinks/machine/thread.h ../../include/setjmp.h \
++ includelinks/kern/machine/setjmp.h ../../include/buf.h \
++ ../../include/sfs.h ../../include/fs.h ../../include/vnode.h \
++ ../../include/kern/sfs.h ../../fs/sfs/sfsprivate.h ../../include/uio.h \
++ ../../include/kern/iovec.h
++sfs_vnops.o: ../../fs/sfs/sfs_vnops.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/kern/fcntl.h ../../include/limits.h \
++ ../../include/kern/limits.h ../../include/stat.h \
++ ../../include/kern/stat.h ../../include/kern/stattypes.h \
++ ../../include/lib.h ../../include/cdefs.h opt-noasserts.h \
++ ../../include/uio.h ../../include/kern/iovec.h ../../include/synch.h \
++ ../../include/spinlock.h includelinks/machine/spinlock.h \
++ ../../include/vfs.h ../../include/array.h ../../include/buf.h \
++ ../../include/sfs.h ../../include/fs.h ../../include/vnode.h \
++ ../../include/kern/sfs.h ../../fs/sfs/sfsprivate.h
++array.o: ../../lib/array.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/lib.h ../../include/cdefs.h opt-noasserts.h \
++ ../../include/array.h
++bitmap.o: ../../lib/bitmap.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/lib.h ../../include/cdefs.h opt-noasserts.h \
++ ../../include/bitmap.h
++bswap.o: ../../lib/bswap.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/endian.h \
++ ../../include/kern/endian.h includelinks/kern/machine/endian.h
++kgets.o: ../../lib/kgets.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h
++kprintf.o: ../../lib/kprintf.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/unistd.h \
++ ../../include/stdarg.h ../../include/cdefs.h ../../include/lib.h \
++ opt-noasserts.h ../../include/spl.h ../../include/cpu.h \
++ ../../include/spinlock.h includelinks/machine/spinlock.h \
++ ../../include/threadlist.h includelinks/machine/vm.h \
++ ../../include/thread.h ../../include/array.h \
++ includelinks/machine/thread.h ../../include/setjmp.h \
++ includelinks/kern/machine/setjmp.h ../../include/current.h \
++ includelinks/machine/current.h ../../include/synch.h \
++ ../../include/mainbus.h ../../include/vfs.h ../../dev/lamebus/ltrace.h
++misc.o: ../../lib/misc.c ../../include/types.h ../../include/kern/types.h \
++ includelinks/kern/machine/types.h includelinks/machine/types.h \
++ ../../include/kern/errmsg.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h
++time.o: ../../lib/time.c ../../include/types.h ../../include/kern/types.h \
++ includelinks/kern/machine/types.h includelinks/machine/types.h \
++ ../../include/clock.h ../../include/kern/time.h
++uio.o: ../../lib/uio.c ../../include/types.h ../../include/kern/types.h \
++ includelinks/kern/machine/types.h includelinks/machine/types.h \
++ ../../include/lib.h ../../include/cdefs.h opt-noasserts.h \
++ ../../include/uio.h ../../include/kern/iovec.h ../../include/proc.h \
++ ../../include/spinlock.h includelinks/machine/spinlock.h \
++ ../../include/current.h includelinks/machine/current.h \
++ ../../include/thread.h ../../include/array.h ../../include/threadlist.h \
++ includelinks/machine/thread.h ../../include/setjmp.h \
++ includelinks/kern/machine/setjmp.h ../../include/copyinout.h
++main.o: ../../main/main.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/wait.h \
++ ../../include/kern/errno.h ../../include/kern/reboot.h \
++ ../../include/kern/unistd.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/spl.h ../../include/clock.h \
++ ../../include/kern/time.h ../../include/thread.h ../../include/array.h \
++ ../../include/spinlock.h includelinks/machine/spinlock.h \
++ ../../include/threadlist.h includelinks/machine/thread.h \
++ ../../include/setjmp.h includelinks/kern/machine/setjmp.h \
++ ../../include/proc.h ../../include/current.h \
++ includelinks/machine/current.h ../../include/synch.h ../../include/vm.h \
++ includelinks/machine/vm.h ../../include/mainbus.h ../../include/vfs.h \
++ ../../include/buf.h ../../include/device.h ../../include/syscall.h \
++ ../../include/test.h ../../include/version.h autoconf.h
++menu.o: ../../main/menu.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/kern/reboot.h ../../include/kern/unistd.h \
++ ../../include/limits.h ../../include/kern/limits.h ../../include/lib.h \
++ ../../include/cdefs.h opt-noasserts.h ../../include/uio.h \
++ ../../include/kern/iovec.h ../../include/clock.h \
++ ../../include/kern/time.h ../../include/thread.h ../../include/array.h \
++ ../../include/spinlock.h includelinks/machine/spinlock.h \
++ ../../include/threadlist.h includelinks/machine/thread.h \
++ ../../include/setjmp.h includelinks/kern/machine/setjmp.h \
++ ../../include/proc.h ../../include/vfs.h ../../include/buf.h \
++ ../../include/sfs.h ../../include/fs.h ../../include/vnode.h \
++ ../../include/kern/sfs.h ../../include/syscall.h ../../include/test.h \
++ opt-synchprobs.h opt-sfs.h opt-net.h
++proc.o: ../../proc/proc.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/spl.h ../../include/cdefs.h \
++ ../../include/proc.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../include/current.h \
++ includelinks/machine/current.h ../../include/thread.h \
++ ../../include/array.h ../../include/lib.h opt-noasserts.h \
++ ../../include/threadlist.h includelinks/machine/thread.h \
++ ../../include/setjmp.h includelinks/kern/machine/setjmp.h \
++ ../../include/addrspace.h ../../include/vm.h includelinks/machine/vm.h \
++ opt-dumbvm.h ../../include/vnode.h
++airballoon.o: ../../synchprobs/airballoon.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/wchan.h ../../include/thread.h \
++ ../../include/array.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../include/threadlist.h \
++ includelinks/machine/thread.h ../../include/setjmp.h \
++ includelinks/kern/machine/setjmp.h ../../include/synch.h \
++ ../../include/test.h ../../include/kern/errno.h \
++ ../../synchprobs/common.h
++common.o: ../../synchprobs/common.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/wchan.h ../../include/thread.h \
++ ../../include/array.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../include/threadlist.h \
++ includelinks/machine/thread.h ../../include/setjmp.h \
++ includelinks/kern/machine/setjmp.h ../../include/synch.h \
++ ../../include/test.h ../../include/kern/errno.h \
++ ../../synchprobs/common.h
++elves.o: ../../synchprobs/elves.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/wchan.h ../../include/thread.h \
++ ../../include/array.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../include/threadlist.h \
++ includelinks/machine/thread.h ../../include/setjmp.h \
++ includelinks/kern/machine/setjmp.h ../../include/synch.h \
++ ../../include/test.h ../../include/kern/errno.h \
++ ../../synchprobs/common.h
++loadelf.o: ../../syscall/loadelf.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/lib.h ../../include/cdefs.h opt-noasserts.h \
++ ../../include/uio.h ../../include/kern/iovec.h ../../include/proc.h \
++ ../../include/spinlock.h includelinks/machine/spinlock.h \
++ ../../include/current.h includelinks/machine/current.h \
++ ../../include/thread.h ../../include/array.h ../../include/threadlist.h \
++ includelinks/machine/thread.h ../../include/setjmp.h \
++ includelinks/kern/machine/setjmp.h ../../include/addrspace.h \
++ ../../include/vm.h includelinks/machine/vm.h opt-dumbvm.h \
++ ../../include/vnode.h ../../include/elf.h includelinks/machine/elf.h
++runprogram.o: ../../syscall/runprogram.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/kern/fcntl.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/proc.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../include/current.h \
++ includelinks/machine/current.h ../../include/thread.h \
++ ../../include/array.h ../../include/threadlist.h \
++ includelinks/machine/thread.h ../../include/setjmp.h \
++ includelinks/kern/machine/setjmp.h ../../include/addrspace.h \
++ ../../include/vm.h includelinks/machine/vm.h opt-dumbvm.h \
++ ../../include/vfs.h ../../include/syscall.h ../../include/test.h
++time_syscalls.o: ../../syscall/time_syscalls.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/clock.h \
++ ../../include/kern/time.h ../../include/copyinout.h \
++ ../../include/syscall.h ../../include/cdefs.h
++arraytest.o: ../../test/arraytest.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/array.h ../../include/test.h
++bitmaptest.o: ../../test/bitmaptest.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/bitmap.h ../../include/test.h
++fstest.o: ../../test/fstest.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/kern/fcntl.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/uio.h ../../include/kern/iovec.h \
++ ../../include/thread.h ../../include/array.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../include/threadlist.h \
++ includelinks/machine/thread.h ../../include/setjmp.h \
++ includelinks/kern/machine/setjmp.h ../../include/synch.h \
++ ../../include/vfs.h ../../include/fs.h ../../include/vnode.h \
++ ../../include/test.h
++kmalloctest.o: ../../test/kmalloctest.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/lib.h ../../include/cdefs.h opt-noasserts.h \
++ ../../include/thread.h ../../include/array.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../include/threadlist.h \
++ includelinks/machine/thread.h ../../include/setjmp.h \
++ includelinks/kern/machine/setjmp.h ../../include/synch.h \
++ ../../include/vm.h includelinks/machine/vm.h ../../include/test.h \
++ opt-dumbvm.h
++semunit.o: ../../test/semunit.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/spinlock.h includelinks/machine/spinlock.h \
++ ../../include/synch.h ../../include/thread.h ../../include/array.h \
++ ../../include/threadlist.h includelinks/machine/thread.h \
++ ../../include/setjmp.h includelinks/kern/machine/setjmp.h \
++ ../../include/current.h includelinks/machine/current.h \
++ ../../include/clock.h ../../include/kern/time.h ../../include/test.h
++synchtest.o: ../../test/synchtest.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/clock.h ../../include/kern/time.h \
++ ../../include/thread.h ../../include/array.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../include/threadlist.h \
++ includelinks/machine/thread.h ../../include/setjmp.h \
++ includelinks/kern/machine/setjmp.h ../../include/synch.h \
++ ../../include/test.h
++threadlisttest.o: ../../test/threadlisttest.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/thread.h ../../include/array.h \
++ ../../include/spinlock.h includelinks/machine/spinlock.h \
++ ../../include/threadlist.h includelinks/machine/thread.h \
++ ../../include/setjmp.h includelinks/kern/machine/setjmp.h \
++ ../../include/test.h
++threadtest.o: ../../test/threadtest.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/thread.h ../../include/array.h \
++ ../../include/spinlock.h includelinks/machine/spinlock.h \
++ ../../include/threadlist.h includelinks/machine/thread.h \
++ ../../include/setjmp.h includelinks/kern/machine/setjmp.h \
++ ../../include/synch.h ../../include/test.h
++tt3.o: ../../test/tt3.c ../../include/types.h ../../include/kern/types.h \
++ includelinks/kern/machine/types.h includelinks/machine/types.h \
++ ../../include/lib.h ../../include/cdefs.h opt-noasserts.h \
++ ../../include/wchan.h ../../include/thread.h ../../include/array.h \
++ ../../include/spinlock.h includelinks/machine/spinlock.h \
++ ../../include/threadlist.h includelinks/machine/thread.h \
++ ../../include/setjmp.h includelinks/kern/machine/setjmp.h \
++ ../../include/synch.h ../../include/test.h
++clock.o: ../../thread/clock.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/cpu.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../include/threadlist.h \
++ includelinks/machine/vm.h ../../include/wchan.h ../../include/clock.h \
++ ../../include/kern/time.h ../../include/thread.h ../../include/array.h \
++ includelinks/machine/thread.h ../../include/setjmp.h \
++ includelinks/kern/machine/setjmp.h ../../include/current.h \
++ includelinks/machine/current.h
++spinlock.o: ../../thread/spinlock.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/cpu.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../include/threadlist.h \
++ includelinks/machine/vm.h ../../include/spl.h ../../include/membar.h \
++ includelinks/machine/membar.h ../../include/current.h \
++ includelinks/machine/current.h ../../include/thread.h \
++ ../../include/array.h includelinks/machine/thread.h \
++ ../../include/setjmp.h includelinks/kern/machine/setjmp.h
++spl.o: ../../thread/spl.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/cpu.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../include/threadlist.h \
++ includelinks/machine/vm.h ../../include/spl.h ../../include/thread.h \
++ ../../include/array.h includelinks/machine/thread.h \
++ ../../include/setjmp.h includelinks/kern/machine/setjmp.h \
++ ../../include/current.h includelinks/machine/current.h
++synch.o: ../../thread/synch.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/spinlock.h includelinks/machine/spinlock.h \
++ ../../include/wchan.h ../../include/thread.h ../../include/array.h \
++ ../../include/threadlist.h includelinks/machine/thread.h \
++ ../../include/setjmp.h includelinks/kern/machine/setjmp.h \
++ ../../include/current.h includelinks/machine/current.h \
++ ../../include/synch.h
++thread.o: ../../thread/thread.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/lib.h ../../include/cdefs.h opt-noasserts.h \
++ ../../include/array.h ../../include/cpu.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../include/threadlist.h \
++ includelinks/machine/vm.h ../../include/spl.h ../../include/wchan.h \
++ ../../include/thread.h includelinks/machine/thread.h \
++ ../../include/setjmp.h includelinks/kern/machine/setjmp.h \
++ ../../include/threadprivate.h ../../include/proc.h \
++ ../../include/current.h includelinks/machine/current.h \
++ ../../include/synch.h ../../include/addrspace.h ../../include/vm.h \
++ opt-dumbvm.h ../../include/mainbus.h ../../include/vnode.h
++threadlist.o: ../../thread/threadlist.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/thread.h ../../include/array.h \
++ ../../include/spinlock.h includelinks/machine/spinlock.h \
++ ../../include/threadlist.h includelinks/machine/thread.h \
++ ../../include/setjmp.h includelinks/kern/machine/setjmp.h
++buf.o: ../../vfs/buf.c ../../include/types.h ../../include/kern/types.h \
++ includelinks/kern/machine/types.h includelinks/machine/types.h \
++ ../../include/kern/errno.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/array.h ../../include/clock.h \
++ ../../include/kern/time.h ../../include/thread.h \
++ ../../include/spinlock.h includelinks/machine/spinlock.h \
++ ../../include/threadlist.h includelinks/machine/thread.h \
++ ../../include/setjmp.h includelinks/kern/machine/setjmp.h \
++ ../../include/current.h includelinks/machine/current.h \
++ ../../include/synch.h ../../include/mainbus.h ../../include/vfs.h \
++ ../../include/fs.h ../../include/buf.h
++device.o: ../../vfs/device.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/kern/fcntl.h ../../include/stat.h \
++ ../../include/kern/stat.h ../../include/kern/stattypes.h \
++ ../../include/lib.h ../../include/cdefs.h opt-noasserts.h \
++ ../../include/uio.h ../../include/kern/iovec.h ../../include/synch.h \
++ ../../include/spinlock.h includelinks/machine/spinlock.h \
++ ../../include/vnode.h ../../include/device.h
++devnull.o: ../../vfs/devnull.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/lib.h ../../include/cdefs.h opt-noasserts.h \
++ ../../include/uio.h ../../include/kern/iovec.h ../../include/vfs.h \
++ ../../include/array.h ../../include/device.h
++vfscwd.o: ../../vfs/vfscwd.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/stat.h ../../include/kern/stat.h \
++ ../../include/kern/stattypes.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/uio.h ../../include/kern/iovec.h \
++ ../../include/proc.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../include/current.h \
++ includelinks/machine/current.h ../../include/thread.h \
++ ../../include/array.h ../../include/threadlist.h \
++ includelinks/machine/thread.h ../../include/setjmp.h \
++ includelinks/kern/machine/setjmp.h ../../include/vfs.h \
++ ../../include/fs.h ../../include/vnode.h
++vfsfail.o: ../../vfs/vfsfail.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/vnode.h ../../include/spinlock.h ../../include/cdefs.h \
++ includelinks/machine/spinlock.h
++vfslist.o: ../../vfs/vfslist.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/lib.h ../../include/cdefs.h opt-noasserts.h \
++ ../../include/array.h ../../include/synch.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../include/vfs.h ../../include/fs.h \
++ ../../include/vnode.h ../../include/device.h
++vfslookup.o: ../../vfs/vfslookup.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/limits.h ../../include/kern/limits.h ../../include/lib.h \
++ ../../include/cdefs.h opt-noasserts.h ../../include/synch.h \
++ ../../include/spinlock.h includelinks/machine/spinlock.h \
++ ../../include/vfs.h ../../include/array.h ../../include/fs.h \
++ ../../include/vnode.h
++vfspath.o: ../../vfs/vfspath.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/kern/fcntl.h ../../include/limits.h \
++ ../../include/kern/limits.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/vfs.h ../../include/array.h \
++ ../../include/vnode.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h
++vnode.o: ../../vfs/vnode.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/lib.h ../../include/cdefs.h opt-noasserts.h \
++ ../../include/synch.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../include/vfs.h \
++ ../../include/array.h ../../include/vnode.h
++kmalloc.o: ../../vm/kmalloc.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/spinlock.h includelinks/machine/spinlock.h \
++ ../../include/vm.h includelinks/machine/vm.h
++trap.o: ../../arch/mips/locore/trap.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/signal.h \
++ includelinks/kern/machine/signal.h ../../include/kern/signal.h \
++ ../../include/lib.h ../../include/cdefs.h opt-noasserts.h \
++ includelinks/mips/specialreg.h includelinks/mips/trapframe.h \
++ ../../include/cpu.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../include/threadlist.h \
++ includelinks/machine/vm.h ../../include/spl.h ../../include/thread.h \
++ ../../include/array.h includelinks/machine/thread.h \
++ ../../include/setjmp.h includelinks/kern/machine/setjmp.h \
++ ../../include/current.h includelinks/machine/current.h \
++ ../../include/vm.h ../../include/mainbus.h ../../include/syscall.h
++syscall.o: ../../arch/mips/syscall/syscall.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/kern/syscall.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h includelinks/mips/trapframe.h ../../include/thread.h \
++ ../../include/array.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../include/threadlist.h \
++ includelinks/machine/thread.h ../../include/setjmp.h \
++ includelinks/kern/machine/setjmp.h ../../include/current.h \
++ includelinks/machine/current.h ../../include/syscall.h
++cpu.o: ../../arch/mips/thread/cpu.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h includelinks/mips/specialreg.h \
++ includelinks/mips/trapframe.h includelinks/platform/maxcpus.h \
++ ../../include/cpu.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../include/threadlist.h \
++ includelinks/machine/vm.h ../../include/thread.h ../../include/array.h \
++ includelinks/machine/thread.h ../../include/setjmp.h \
++ includelinks/kern/machine/setjmp.h
++switchframe.o: ../../arch/mips/thread/switchframe.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/thread.h ../../include/array.h \
++ ../../include/spinlock.h includelinks/machine/spinlock.h \
++ ../../include/threadlist.h includelinks/machine/thread.h \
++ ../../include/setjmp.h includelinks/kern/machine/setjmp.h \
++ ../../include/threadprivate.h ../../arch/mips/thread/switchframe.h
++switch.o: ../../arch/mips/thread/switch.S \
++ includelinks/kern/mips/regdefs.h
++thread_machdep.o: ../../arch/mips/thread/thread_machdep.c \
++ ../../include/types.h ../../include/kern/types.h \
++ includelinks/kern/machine/types.h includelinks/machine/types.h \
++ ../../include/lib.h ../../include/cdefs.h opt-noasserts.h \
++ ../../include/thread.h ../../include/array.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../include/threadlist.h \
++ includelinks/machine/thread.h ../../include/setjmp.h \
++ includelinks/kern/machine/setjmp.h ../../include/threadprivate.h
++threadstart.o: ../../arch/mips/thread/threadstart.S \
++ includelinks/kern/mips/regdefs.h
++dumbvm.o: ../../arch/mips/vm/dumbvm.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/lib.h ../../include/cdefs.h opt-noasserts.h \
++ ../../include/spl.h ../../include/cpu.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../include/threadlist.h \
++ includelinks/machine/vm.h ../../include/proc.h ../../include/current.h \
++ includelinks/machine/current.h ../../include/thread.h \
++ ../../include/array.h includelinks/machine/thread.h \
++ ../../include/setjmp.h includelinks/kern/machine/setjmp.h \
++ includelinks/mips/tlb.h ../../include/addrspace.h ../../include/vm.h \
++ opt-dumbvm.h
++ram.o: ../../arch/mips/vm/ram.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/vm.h includelinks/machine/vm.h \
++ ../../include/mainbus.h
++adddi3.o: ../../../common/gcc-millicode/adddi3.c \
++ ../../../common/gcc-millicode/longlong.h ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/endian.h \
++ ../../include/kern/endian.h includelinks/kern/machine/endian.h \
++ ../../include/limits.h ../../include/kern/limits.h
++anddi3.o: ../../../common/gcc-millicode/anddi3.c \
++ ../../../common/gcc-millicode/longlong.h ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/endian.h \
++ ../../include/kern/endian.h includelinks/kern/machine/endian.h \
++ ../../include/limits.h ../../include/kern/limits.h
++ashldi3.o: ../../../common/gcc-millicode/ashldi3.c \
++ ../../../common/gcc-millicode/longlong.h ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/endian.h \
++ ../../include/kern/endian.h includelinks/kern/machine/endian.h \
++ ../../include/limits.h ../../include/kern/limits.h
++ashrdi3.o: ../../../common/gcc-millicode/ashrdi3.c \
++ ../../../common/gcc-millicode/longlong.h ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/endian.h \
++ ../../include/kern/endian.h includelinks/kern/machine/endian.h \
++ ../../include/limits.h ../../include/kern/limits.h
++cmpdi2.o: ../../../common/gcc-millicode/cmpdi2.c \
++ ../../../common/gcc-millicode/longlong.h ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/endian.h \
++ ../../include/kern/endian.h includelinks/kern/machine/endian.h \
++ ../../include/limits.h ../../include/kern/limits.h
++divdi3.o: ../../../common/gcc-millicode/divdi3.c \
++ ../../../common/gcc-millicode/longlong.h ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/endian.h \
++ ../../include/kern/endian.h includelinks/kern/machine/endian.h \
++ ../../include/limits.h ../../include/kern/limits.h
++iordi3.o: ../../../common/gcc-millicode/iordi3.c \
++ ../../../common/gcc-millicode/longlong.h ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/endian.h \
++ ../../include/kern/endian.h includelinks/kern/machine/endian.h \
++ ../../include/limits.h ../../include/kern/limits.h
++lshldi3.o: ../../../common/gcc-millicode/lshldi3.c \
++ ../../../common/gcc-millicode/longlong.h ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/endian.h \
++ ../../include/kern/endian.h includelinks/kern/machine/endian.h \
++ ../../include/limits.h ../../include/kern/limits.h
++lshrdi3.o: ../../../common/gcc-millicode/lshrdi3.c \
++ ../../../common/gcc-millicode/longlong.h ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/endian.h \
++ ../../include/kern/endian.h includelinks/kern/machine/endian.h \
++ ../../include/limits.h ../../include/kern/limits.h
++moddi3.o: ../../../common/gcc-millicode/moddi3.c \
++ ../../../common/gcc-millicode/longlong.h ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/endian.h \
++ ../../include/kern/endian.h includelinks/kern/machine/endian.h \
++ ../../include/limits.h ../../include/kern/limits.h
++muldi3.o: ../../../common/gcc-millicode/muldi3.c \
++ ../../../common/gcc-millicode/longlong.h ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/endian.h \
++ ../../include/kern/endian.h includelinks/kern/machine/endian.h \
++ ../../include/limits.h ../../include/kern/limits.h
++negdi2.o: ../../../common/gcc-millicode/negdi2.c \
++ ../../../common/gcc-millicode/longlong.h ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/endian.h \
++ ../../include/kern/endian.h includelinks/kern/machine/endian.h \
++ ../../include/limits.h ../../include/kern/limits.h
++notdi2.o: ../../../common/gcc-millicode/notdi2.c \
++ ../../../common/gcc-millicode/longlong.h ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/endian.h \
++ ../../include/kern/endian.h includelinks/kern/machine/endian.h \
++ ../../include/limits.h ../../include/kern/limits.h
++qdivrem.o: ../../../common/gcc-millicode/qdivrem.c \
++ ../../../common/gcc-millicode/longlong.h ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/endian.h \
++ ../../include/kern/endian.h includelinks/kern/machine/endian.h \
++ ../../include/limits.h ../../include/kern/limits.h
++subdi3.o: ../../../common/gcc-millicode/subdi3.c \
++ ../../../common/gcc-millicode/longlong.h ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/endian.h \
++ ../../include/kern/endian.h includelinks/kern/machine/endian.h \
++ ../../include/limits.h ../../include/kern/limits.h
++ucmpdi2.o: ../../../common/gcc-millicode/ucmpdi2.c \
++ ../../../common/gcc-millicode/longlong.h ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/endian.h \
++ ../../include/kern/endian.h includelinks/kern/machine/endian.h \
++ ../../include/limits.h ../../include/kern/limits.h
++udivdi3.o: ../../../common/gcc-millicode/udivdi3.c \
++ ../../../common/gcc-millicode/longlong.h ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/endian.h \
++ ../../include/kern/endian.h includelinks/kern/machine/endian.h \
++ ../../include/limits.h ../../include/kern/limits.h
++umoddi3.o: ../../../common/gcc-millicode/umoddi3.c \
++ ../../../common/gcc-millicode/longlong.h ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/endian.h \
++ ../../include/kern/endian.h includelinks/kern/machine/endian.h \
++ ../../include/limits.h ../../include/kern/limits.h
++xordi3.o: ../../../common/gcc-millicode/xordi3.c \
++ ../../../common/gcc-millicode/longlong.h ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/endian.h \
++ ../../include/kern/endian.h includelinks/kern/machine/endian.h \
++ ../../include/limits.h ../../include/kern/limits.h
++setjmp.o: ../../../common/libc/arch/mips/setjmp.S \
++ includelinks/kern/mips/regdefs.h
++copyinout.o: ../../vm/copyinout.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/lib.h ../../include/cdefs.h opt-noasserts.h \
++ ../../include/setjmp.h includelinks/kern/machine/setjmp.h \
++ ../../include/thread.h ../../include/array.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../include/threadlist.h \
++ includelinks/machine/thread.h ../../include/current.h \
++ includelinks/machine/current.h ../../include/vm.h \
++ includelinks/machine/vm.h ../../include/copyinout.h
++cache-mips161.o: ../../arch/mips/locore/cache-mips161.S \
++ includelinks/kern/mips/regdefs.h
++exception-mips1.o: ../../arch/mips/locore/exception-mips1.S \
++ includelinks/kern/mips/regdefs.h includelinks/mips/specialreg.h
++tlb-mips161.o: ../../arch/mips/vm/tlb-mips161.S \
++ includelinks/kern/mips/regdefs.h includelinks/mips/specialreg.h
++lamebus_machdep.o: ../../arch/sys161/dev/lamebus_machdep.c \
++ ../../include/types.h ../../include/kern/types.h \
++ includelinks/kern/machine/types.h includelinks/machine/types.h \
++ ../../include/kern/unistd.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h includelinks/mips/specialreg.h \
++ includelinks/mips/trapframe.h ../../include/cpu.h \
++ ../../include/spinlock.h includelinks/machine/spinlock.h \
++ ../../include/threadlist.h includelinks/machine/vm.h ../../include/spl.h \
++ ../../include/clock.h ../../include/kern/time.h ../../include/thread.h \
++ ../../include/array.h includelinks/machine/thread.h \
++ ../../include/setjmp.h includelinks/kern/machine/setjmp.h \
++ ../../include/current.h includelinks/machine/current.h \
++ ../../include/membar.h includelinks/machine/membar.h \
++ ../../include/synch.h ../../include/mainbus.h includelinks/sys161/bus.h \
++ ../../dev/lamebus/lamebus.h autoconf.h
++start.o: ../../arch/sys161/main/start.S includelinks/kern/mips/regdefs.h \
++ includelinks/mips/specialreg.h
+diff --git a/kern/compile/ASST1/.depend.__printf.c b/kern/compile/ASST1/.depend.__printf.c
+new file mode 100644
+index 0000000..f105fcf
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.__printf.c
+@@ -0,0 +1,4 @@
++__printf.o: ../../../common/libc/printf/__printf.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/stdarg.h
+diff --git a/kern/compile/ASST1/.depend.adddi3.c b/kern/compile/ASST1/.depend.adddi3.c
+new file mode 100644
+index 0000000..b26c51a
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.adddi3.c
+@@ -0,0 +1,6 @@
++adddi3.o: ../../../common/gcc-millicode/adddi3.c \
++ ../../../common/gcc-millicode/longlong.h ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/endian.h \
++ ../../include/kern/endian.h includelinks/kern/machine/endian.h \
++ ../../include/limits.h ../../include/kern/limits.h
+diff --git a/kern/compile/ASST1/.depend.airballoon.c b/kern/compile/ASST1/.depend.airballoon.c
+new file mode 100644
+index 0000000..6c81752
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.airballoon.c
+@@ -0,0 +1,10 @@
++airballoon.o: ../../synchprobs/airballoon.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/wchan.h ../../include/thread.h \
++ ../../include/array.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../include/threadlist.h \
++ includelinks/machine/thread.h ../../include/setjmp.h \
++ includelinks/kern/machine/setjmp.h ../../include/synch.h \
++ ../../include/test.h ../../include/kern/errno.h \
++ ../../synchprobs/common.h
+diff --git a/kern/compile/ASST1/.depend.anddi3.c b/kern/compile/ASST1/.depend.anddi3.c
+new file mode 100644
+index 0000000..5c3af59
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.anddi3.c
+@@ -0,0 +1,6 @@
++anddi3.o: ../../../common/gcc-millicode/anddi3.c \
++ ../../../common/gcc-millicode/longlong.h ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/endian.h \
++ ../../include/kern/endian.h includelinks/kern/machine/endian.h \
++ ../../include/limits.h ../../include/kern/limits.h
+diff --git a/kern/compile/ASST1/.depend.array.c b/kern/compile/ASST1/.depend.array.c
+new file mode 100644
+index 0000000..11769df
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.array.c
+@@ -0,0 +1,5 @@
++array.o: ../../lib/array.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/lib.h ../../include/cdefs.h opt-noasserts.h \
++ ../../include/array.h
+diff --git a/kern/compile/ASST1/.depend.arraytest.c b/kern/compile/ASST1/.depend.arraytest.c
+new file mode 100644
+index 0000000..d5f5a99
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.arraytest.c
+@@ -0,0 +1,4 @@
++arraytest.o: ../../test/arraytest.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/array.h ../../include/test.h
+diff --git a/kern/compile/ASST1/.depend.ashldi3.c b/kern/compile/ASST1/.depend.ashldi3.c
+new file mode 100644
+index 0000000..5a9b439
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.ashldi3.c
+@@ -0,0 +1,6 @@
++ashldi3.o: ../../../common/gcc-millicode/ashldi3.c \
++ ../../../common/gcc-millicode/longlong.h ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/endian.h \
++ ../../include/kern/endian.h includelinks/kern/machine/endian.h \
++ ../../include/limits.h ../../include/kern/limits.h
+diff --git a/kern/compile/ASST1/.depend.ashrdi3.c b/kern/compile/ASST1/.depend.ashrdi3.c
+new file mode 100644
+index 0000000..501df15
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.ashrdi3.c
+@@ -0,0 +1,6 @@
++ashrdi3.o: ../../../common/gcc-millicode/ashrdi3.c \
++ ../../../common/gcc-millicode/longlong.h ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/endian.h \
++ ../../include/kern/endian.h includelinks/kern/machine/endian.h \
++ ../../include/limits.h ../../include/kern/limits.h
+diff --git a/kern/compile/ASST1/.depend.atoi.c b/kern/compile/ASST1/.depend.atoi.c
+new file mode 100644
+index 0000000..b1309d1
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.atoi.c
+@@ -0,0 +1,4 @@
++atoi.o: ../../../common/libc/stdlib/atoi.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h
+diff --git a/kern/compile/ASST1/.depend.autoconf.c b/kern/compile/ASST1/.depend.autoconf.c
+new file mode 100644
+index 0000000..c63183a
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.autoconf.c
+@@ -0,0 +1,4 @@
++autoconf.o: ../../compile/ASST1/autoconf.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../compile/ASST1/autoconf.h
+diff --git a/kern/compile/ASST1/.depend.beep.c b/kern/compile/ASST1/.depend.beep.c
+new file mode 100644
+index 0000000..2eb1f4f
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.beep.c
+@@ -0,0 +1,5 @@
++beep.o: ../../dev/generic/beep.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/lib.h ../../include/cdefs.h opt-noasserts.h \
++ ../../dev/generic/beep.h autoconf.h
+diff --git a/kern/compile/ASST1/.depend.beep_ltimer.c b/kern/compile/ASST1/.depend.beep_ltimer.c
+new file mode 100644
+index 0000000..4997972
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.beep_ltimer.c
+@@ -0,0 +1,5 @@
++beep_ltimer.o: ../../dev/lamebus/beep_ltimer.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../dev/generic/beep.h ../../dev/lamebus/ltimer.h \
++ autoconf.h
+diff --git a/kern/compile/ASST1/.depend.bitmap.c b/kern/compile/ASST1/.depend.bitmap.c
+new file mode 100644
+index 0000000..0abdd43
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.bitmap.c
+@@ -0,0 +1,5 @@
++bitmap.o: ../../lib/bitmap.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/lib.h ../../include/cdefs.h opt-noasserts.h \
++ ../../include/bitmap.h
+diff --git a/kern/compile/ASST1/.depend.bitmaptest.c b/kern/compile/ASST1/.depend.bitmaptest.c
+new file mode 100644
+index 0000000..ac59647
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.bitmaptest.c
+@@ -0,0 +1,4 @@
++bitmaptest.o: ../../test/bitmaptest.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/bitmap.h ../../include/test.h
+diff --git a/kern/compile/ASST1/.depend.bswap.c b/kern/compile/ASST1/.depend.bswap.c
+new file mode 100644
+index 0000000..3e30c8c
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.bswap.c
+@@ -0,0 +1,4 @@
++bswap.o: ../../lib/bswap.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/endian.h \
++ ../../include/kern/endian.h includelinks/kern/machine/endian.h
+diff --git a/kern/compile/ASST1/.depend.buf.c b/kern/compile/ASST1/.depend.buf.c
+new file mode 100644
+index 0000000..765d478
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.buf.c
+@@ -0,0 +1,11 @@
++buf.o: ../../vfs/buf.c ../../include/types.h ../../include/kern/types.h \
++ includelinks/kern/machine/types.h includelinks/machine/types.h \
++ ../../include/kern/errno.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/array.h ../../include/clock.h \
++ ../../include/kern/time.h ../../include/thread.h \
++ ../../include/spinlock.h includelinks/machine/spinlock.h \
++ ../../include/threadlist.h includelinks/machine/thread.h \
++ ../../include/setjmp.h includelinks/kern/machine/setjmp.h \
++ ../../include/current.h includelinks/machine/current.h \
++ ../../include/synch.h ../../include/mainbus.h ../../include/vfs.h \
++ ../../include/fs.h ../../include/buf.h
+diff --git a/kern/compile/ASST1/.depend.bzero.c b/kern/compile/ASST1/.depend.bzero.c
+new file mode 100644
+index 0000000..5b7b54a
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.bzero.c
+@@ -0,0 +1,4 @@
++bzero.o: ../../../common/libc/string/bzero.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h
+diff --git a/kern/compile/ASST1/.depend.cache-mips161.S b/kern/compile/ASST1/.depend.cache-mips161.S
+new file mode 100644
+index 0000000..ab451a9
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.cache-mips161.S
+@@ -0,0 +1,2 @@
++cache-mips161.o: ../../arch/mips/locore/cache-mips161.S \
++ includelinks/kern/mips/regdefs.h
+diff --git a/kern/compile/ASST1/.depend.clock.c b/kern/compile/ASST1/.depend.clock.c
+new file mode 100644
+index 0000000..0b983e9
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.clock.c
+@@ -0,0 +1,10 @@
++clock.o: ../../thread/clock.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/cpu.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../include/threadlist.h \
++ includelinks/machine/vm.h ../../include/wchan.h ../../include/clock.h \
++ ../../include/kern/time.h ../../include/thread.h ../../include/array.h \
++ includelinks/machine/thread.h ../../include/setjmp.h \
++ includelinks/kern/machine/setjmp.h ../../include/current.h \
++ includelinks/machine/current.h
+diff --git a/kern/compile/ASST1/.depend.cmpdi2.c b/kern/compile/ASST1/.depend.cmpdi2.c
+new file mode 100644
+index 0000000..6720414
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.cmpdi2.c
+@@ -0,0 +1,6 @@
++cmpdi2.o: ../../../common/gcc-millicode/cmpdi2.c \
++ ../../../common/gcc-millicode/longlong.h ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/endian.h \
++ ../../include/kern/endian.h includelinks/kern/machine/endian.h \
++ ../../include/limits.h ../../include/kern/limits.h
+diff --git a/kern/compile/ASST1/.depend.common.c b/kern/compile/ASST1/.depend.common.c
+new file mode 100644
+index 0000000..a86440e
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.common.c
+@@ -0,0 +1,10 @@
++common.o: ../../synchprobs/common.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/wchan.h ../../include/thread.h \
++ ../../include/array.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../include/threadlist.h \
++ includelinks/machine/thread.h ../../include/setjmp.h \
++ includelinks/kern/machine/setjmp.h ../../include/synch.h \
++ ../../include/test.h ../../include/kern/errno.h \
++ ../../synchprobs/common.h
+diff --git a/kern/compile/ASST1/.depend.con_lser.c b/kern/compile/ASST1/.depend.con_lser.c
+new file mode 100644
+index 0000000..7a5a2db
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.con_lser.c
+@@ -0,0 +1,5 @@
++con_lser.o: ../../dev/lamebus/con_lser.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../dev/generic/console.h ../../dev/lamebus/lser.h \
++ ../../include/spinlock.h includelinks/machine/spinlock.h autoconf.h
+diff --git a/kern/compile/ASST1/.depend.console.c b/kern/compile/ASST1/.depend.console.c
+new file mode 100644
+index 0000000..aae4ea0
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.console.c
+@@ -0,0 +1,13 @@
++console.o: ../../dev/generic/console.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/lib.h ../../include/cdefs.h opt-noasserts.h \
++ ../../include/uio.h ../../include/kern/iovec.h ../../include/cpu.h \
++ ../../include/spinlock.h includelinks/machine/spinlock.h \
++ ../../include/threadlist.h includelinks/machine/vm.h \
++ ../../include/thread.h ../../include/array.h \
++ includelinks/machine/thread.h ../../include/setjmp.h \
++ includelinks/kern/machine/setjmp.h ../../include/current.h \
++ includelinks/machine/current.h ../../include/synch.h \
++ ../../dev/generic/console.h ../../include/vfs.h ../../include/device.h \
++ autoconf.h
+diff --git a/kern/compile/ASST1/.depend.copyinout.c b/kern/compile/ASST1/.depend.copyinout.c
+new file mode 100644
+index 0000000..3812981
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.copyinout.c
+@@ -0,0 +1,10 @@
++copyinout.o: ../../vm/copyinout.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/lib.h ../../include/cdefs.h opt-noasserts.h \
++ ../../include/setjmp.h includelinks/kern/machine/setjmp.h \
++ ../../include/thread.h ../../include/array.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../include/threadlist.h \
++ includelinks/machine/thread.h ../../include/current.h \
++ includelinks/machine/current.h ../../include/vm.h \
++ includelinks/machine/vm.h ../../include/copyinout.h
+diff --git a/kern/compile/ASST1/.depend.cpu.c b/kern/compile/ASST1/.depend.cpu.c
+new file mode 100644
+index 0000000..12b41ff
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.cpu.c
+@@ -0,0 +1,10 @@
++cpu.o: ../../arch/mips/thread/cpu.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h includelinks/mips/specialreg.h \
++ includelinks/mips/trapframe.h includelinks/platform/maxcpus.h \
++ ../../include/cpu.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../include/threadlist.h \
++ includelinks/machine/vm.h ../../include/thread.h ../../include/array.h \
++ includelinks/machine/thread.h ../../include/setjmp.h \
++ includelinks/kern/machine/setjmp.h
+diff --git a/kern/compile/ASST1/.depend.device.c b/kern/compile/ASST1/.depend.device.c
+new file mode 100644
+index 0000000..283f8ae
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.device.c
+@@ -0,0 +1,9 @@
++device.o: ../../vfs/device.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/kern/fcntl.h ../../include/stat.h \
++ ../../include/kern/stat.h ../../include/kern/stattypes.h \
++ ../../include/lib.h ../../include/cdefs.h opt-noasserts.h \
++ ../../include/uio.h ../../include/kern/iovec.h ../../include/synch.h \
++ ../../include/spinlock.h includelinks/machine/spinlock.h \
++ ../../include/vnode.h ../../include/device.h
+diff --git a/kern/compile/ASST1/.depend.devnull.c b/kern/compile/ASST1/.depend.devnull.c
+new file mode 100644
+index 0000000..b8237d8
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.devnull.c
+@@ -0,0 +1,6 @@
++devnull.o: ../../vfs/devnull.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/lib.h ../../include/cdefs.h opt-noasserts.h \
++ ../../include/uio.h ../../include/kern/iovec.h ../../include/vfs.h \
++ ../../include/array.h ../../include/device.h
+diff --git a/kern/compile/ASST1/.depend.divdi3.c b/kern/compile/ASST1/.depend.divdi3.c
+new file mode 100644
+index 0000000..6a93f7a
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.divdi3.c
+@@ -0,0 +1,6 @@
++divdi3.o: ../../../common/gcc-millicode/divdi3.c \
++ ../../../common/gcc-millicode/longlong.h ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/endian.h \
++ ../../include/kern/endian.h includelinks/kern/machine/endian.h \
++ ../../include/limits.h ../../include/kern/limits.h
+diff --git a/kern/compile/ASST1/.depend.dumbvm.c b/kern/compile/ASST1/.depend.dumbvm.c
+new file mode 100644
+index 0000000..01c06ae
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.dumbvm.c
+@@ -0,0 +1,12 @@
++dumbvm.o: ../../arch/mips/vm/dumbvm.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/lib.h ../../include/cdefs.h opt-noasserts.h \
++ ../../include/spl.h ../../include/cpu.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../include/threadlist.h \
++ includelinks/machine/vm.h ../../include/proc.h ../../include/current.h \
++ includelinks/machine/current.h ../../include/thread.h \
++ ../../include/array.h includelinks/machine/thread.h \
++ ../../include/setjmp.h includelinks/kern/machine/setjmp.h \
++ includelinks/mips/tlb.h ../../include/addrspace.h ../../include/vm.h \
++ opt-dumbvm.h
+diff --git a/kern/compile/ASST1/.depend.elves.c b/kern/compile/ASST1/.depend.elves.c
+new file mode 100644
+index 0000000..2790ec1
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.elves.c
+@@ -0,0 +1,10 @@
++elves.o: ../../synchprobs/elves.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/wchan.h ../../include/thread.h \
++ ../../include/array.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../include/threadlist.h \
++ includelinks/machine/thread.h ../../include/setjmp.h \
++ includelinks/kern/machine/setjmp.h ../../include/synch.h \
++ ../../include/test.h ../../include/kern/errno.h \
++ ../../synchprobs/common.h
+diff --git a/kern/compile/ASST1/.depend.emu.c b/kern/compile/ASST1/.depend.emu.c
+new file mode 100644
+index 0000000..92de4b8
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.emu.c
+@@ -0,0 +1,14 @@
++emu.o: ../../dev/lamebus/emu.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/kern/fcntl.h ../../include/stat.h \
++ ../../include/kern/stat.h ../../include/kern/stattypes.h \
++ ../../include/lib.h ../../include/cdefs.h opt-noasserts.h \
++ ../../include/array.h ../../include/uio.h ../../include/kern/iovec.h \
++ ../../include/membar.h includelinks/machine/membar.h \
++ ../../include/synch.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../dev/lamebus/emu.h \
++ includelinks/platform/bus.h includelinks/machine/vm.h \
++ ../../dev/lamebus/lamebus.h ../../include/cpu.h \
++ ../../include/threadlist.h ../../include/vfs.h ../../include/emufs.h \
++ ../../include/fs.h ../../include/vnode.h autoconf.h
+diff --git a/kern/compile/ASST1/.depend.emu_att.c b/kern/compile/ASST1/.depend.emu_att.c
+new file mode 100644
+index 0000000..05e253f
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.emu_att.c
+@@ -0,0 +1,7 @@
++emu_att.o: ../../dev/lamebus/emu_att.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../dev/lamebus/lamebus.h ../../include/cpu.h \
++ ../../include/spinlock.h includelinks/machine/spinlock.h \
++ ../../include/threadlist.h includelinks/machine/vm.h \
++ ../../dev/lamebus/emu.h autoconf.h
+diff --git a/kern/compile/ASST1/.depend.exception-mips1.S b/kern/compile/ASST1/.depend.exception-mips1.S
+new file mode 100644
+index 0000000..67ce24f
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.exception-mips1.S
+@@ -0,0 +1,2 @@
++exception-mips1.o: ../../arch/mips/locore/exception-mips1.S \
++ includelinks/kern/mips/regdefs.h includelinks/mips/specialreg.h
+diff --git a/kern/compile/ASST1/.depend.fstest.c b/kern/compile/ASST1/.depend.fstest.c
+new file mode 100644
+index 0000000..5acf37d
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.fstest.c
+@@ -0,0 +1,11 @@
++fstest.o: ../../test/fstest.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/kern/fcntl.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/uio.h ../../include/kern/iovec.h \
++ ../../include/thread.h ../../include/array.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../include/threadlist.h \
++ includelinks/machine/thread.h ../../include/setjmp.h \
++ includelinks/kern/machine/setjmp.h ../../include/synch.h \
++ ../../include/vfs.h ../../include/fs.h ../../include/vnode.h \
++ ../../include/test.h
+diff --git a/kern/compile/ASST1/.depend.iordi3.c b/kern/compile/ASST1/.depend.iordi3.c
+new file mode 100644
+index 0000000..b6a3add
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.iordi3.c
+@@ -0,0 +1,6 @@
++iordi3.o: ../../../common/gcc-millicode/iordi3.c \
++ ../../../common/gcc-millicode/longlong.h ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/endian.h \
++ ../../include/kern/endian.h includelinks/kern/machine/endian.h \
++ ../../include/limits.h ../../include/kern/limits.h
+diff --git a/kern/compile/ASST1/.depend.kgets.c b/kern/compile/ASST1/.depend.kgets.c
+new file mode 100644
+index 0000000..6f40418
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.kgets.c
+@@ -0,0 +1,4 @@
++kgets.o: ../../lib/kgets.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h
+diff --git a/kern/compile/ASST1/.depend.kmalloc.c b/kern/compile/ASST1/.depend.kmalloc.c
+new file mode 100644
+index 0000000..5c81e8a
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.kmalloc.c
+@@ -0,0 +1,5 @@
++kmalloc.o: ../../vm/kmalloc.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/spinlock.h includelinks/machine/spinlock.h \
++ ../../include/vm.h includelinks/machine/vm.h
+diff --git a/kern/compile/ASST1/.depend.kmalloctest.c b/kern/compile/ASST1/.depend.kmalloctest.c
+new file mode 100644
+index 0000000..a6c4284
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.kmalloctest.c
+@@ -0,0 +1,10 @@
++kmalloctest.o: ../../test/kmalloctest.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/lib.h ../../include/cdefs.h opt-noasserts.h \
++ ../../include/thread.h ../../include/array.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../include/threadlist.h \
++ includelinks/machine/thread.h ../../include/setjmp.h \
++ includelinks/kern/machine/setjmp.h ../../include/synch.h \
++ ../../include/vm.h includelinks/machine/vm.h ../../include/test.h \
++ opt-dumbvm.h
+diff --git a/kern/compile/ASST1/.depend.kprintf.c b/kern/compile/ASST1/.depend.kprintf.c
+new file mode 100644
+index 0000000..08447d3
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.kprintf.c
+@@ -0,0 +1,12 @@
++kprintf.o: ../../lib/kprintf.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/unistd.h \
++ ../../include/stdarg.h ../../include/cdefs.h ../../include/lib.h \
++ opt-noasserts.h ../../include/spl.h ../../include/cpu.h \
++ ../../include/spinlock.h includelinks/machine/spinlock.h \
++ ../../include/threadlist.h includelinks/machine/vm.h \
++ ../../include/thread.h ../../include/array.h \
++ includelinks/machine/thread.h ../../include/setjmp.h \
++ includelinks/kern/machine/setjmp.h ../../include/current.h \
++ includelinks/machine/current.h ../../include/synch.h \
++ ../../include/mainbus.h ../../include/vfs.h ../../dev/lamebus/ltrace.h
+diff --git a/kern/compile/ASST1/.depend.lamebus.c b/kern/compile/ASST1/.depend.lamebus.c
+new file mode 100644
+index 0000000..e92be68
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.lamebus.c
+@@ -0,0 +1,11 @@
++lamebus.o: ../../dev/lamebus/lamebus.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/cpu.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../include/threadlist.h \
++ includelinks/machine/vm.h ../../include/membar.h \
++ includelinks/machine/membar.h ../../include/current.h \
++ includelinks/machine/current.h ../../include/thread.h \
++ ../../include/array.h includelinks/machine/thread.h \
++ ../../include/setjmp.h includelinks/kern/machine/setjmp.h \
++ ../../dev/lamebus/lamebus.h
+diff --git a/kern/compile/ASST1/.depend.lamebus_machdep.c b/kern/compile/ASST1/.depend.lamebus_machdep.c
+new file mode 100644
+index 0000000..113727d
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.lamebus_machdep.c
+@@ -0,0 +1,15 @@
++lamebus_machdep.o: ../../arch/sys161/dev/lamebus_machdep.c \
++ ../../include/types.h ../../include/kern/types.h \
++ includelinks/kern/machine/types.h includelinks/machine/types.h \
++ ../../include/kern/unistd.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h includelinks/mips/specialreg.h \
++ includelinks/mips/trapframe.h ../../include/cpu.h \
++ ../../include/spinlock.h includelinks/machine/spinlock.h \
++ ../../include/threadlist.h includelinks/machine/vm.h ../../include/spl.h \
++ ../../include/clock.h ../../include/kern/time.h ../../include/thread.h \
++ ../../include/array.h includelinks/machine/thread.h \
++ ../../include/setjmp.h includelinks/kern/machine/setjmp.h \
++ ../../include/current.h includelinks/machine/current.h \
++ ../../include/membar.h includelinks/machine/membar.h \
++ ../../include/synch.h ../../include/mainbus.h includelinks/sys161/bus.h \
++ ../../dev/lamebus/lamebus.h autoconf.h
+diff --git a/kern/compile/ASST1/.depend.lhd.c b/kern/compile/ASST1/.depend.lhd.c
+new file mode 100644
+index 0000000..5b8e494
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.lhd.c
+@@ -0,0 +1,11 @@
++lhd.o: ../../dev/lamebus/lhd.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/lib.h ../../include/cdefs.h opt-noasserts.h \
++ ../../include/uio.h ../../include/kern/iovec.h ../../include/membar.h \
++ includelinks/machine/membar.h ../../include/synch.h \
++ ../../include/spinlock.h includelinks/machine/spinlock.h \
++ includelinks/platform/bus.h includelinks/machine/vm.h \
++ ../../dev/lamebus/lamebus.h ../../include/cpu.h \
++ ../../include/threadlist.h ../../include/vfs.h ../../include/array.h \
++ ../../dev/lamebus/lhd.h ../../include/device.h autoconf.h
+diff --git a/kern/compile/ASST1/.depend.lhd_att.c b/kern/compile/ASST1/.depend.lhd_att.c
+new file mode 100644
+index 0000000..2f69f50
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.lhd_att.c
+@@ -0,0 +1,7 @@
++lhd_att.o: ../../dev/lamebus/lhd_att.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../dev/lamebus/lamebus.h ../../include/cpu.h \
++ ../../include/spinlock.h includelinks/machine/spinlock.h \
++ ../../include/threadlist.h includelinks/machine/vm.h \
++ ../../dev/lamebus/lhd.h ../../include/device.h autoconf.h
+diff --git a/kern/compile/ASST1/.depend.loadelf.c b/kern/compile/ASST1/.depend.loadelf.c
+new file mode 100644
+index 0000000..412a9fd
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.loadelf.c
+@@ -0,0 +1,12 @@
++loadelf.o: ../../syscall/loadelf.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/lib.h ../../include/cdefs.h opt-noasserts.h \
++ ../../include/uio.h ../../include/kern/iovec.h ../../include/proc.h \
++ ../../include/spinlock.h includelinks/machine/spinlock.h \
++ ../../include/current.h includelinks/machine/current.h \
++ ../../include/thread.h ../../include/array.h ../../include/threadlist.h \
++ includelinks/machine/thread.h ../../include/setjmp.h \
++ includelinks/kern/machine/setjmp.h ../../include/addrspace.h \
++ ../../include/vm.h includelinks/machine/vm.h opt-dumbvm.h \
++ ../../include/vnode.h ../../include/elf.h includelinks/machine/elf.h
+diff --git a/kern/compile/ASST1/.depend.lrandom.c b/kern/compile/ASST1/.depend.lrandom.c
+new file mode 100644
+index 0000000..7dccf3f
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.lrandom.c
+@@ -0,0 +1,8 @@
++lrandom.o: ../../dev/lamebus/lrandom.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/uio.h ../../include/kern/iovec.h \
++ includelinks/platform/bus.h includelinks/machine/vm.h \
++ ../../dev/lamebus/lamebus.h ../../include/cpu.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../include/threadlist.h \
++ ../../dev/lamebus/lrandom.h autoconf.h
+diff --git a/kern/compile/ASST1/.depend.lrandom_att.c b/kern/compile/ASST1/.depend.lrandom_att.c
+new file mode 100644
+index 0000000..e4dc766
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.lrandom_att.c
+@@ -0,0 +1,7 @@
++lrandom_att.o: ../../dev/lamebus/lrandom_att.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../dev/lamebus/lamebus.h ../../include/cpu.h \
++ ../../include/spinlock.h includelinks/machine/spinlock.h \
++ ../../include/threadlist.h includelinks/machine/vm.h \
++ ../../dev/lamebus/lrandom.h autoconf.h
+diff --git a/kern/compile/ASST1/.depend.lser.c b/kern/compile/ASST1/.depend.lser.c
+new file mode 100644
+index 0000000..a2ba69c
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.lser.c
+@@ -0,0 +1,7 @@
++lser.o: ../../dev/lamebus/lser.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/spinlock.h includelinks/machine/spinlock.h \
++ includelinks/platform/bus.h includelinks/machine/vm.h \
++ ../../dev/lamebus/lamebus.h ../../include/cpu.h \
++ ../../include/threadlist.h ../../dev/lamebus/lser.h autoconf.h
+diff --git a/kern/compile/ASST1/.depend.lser_att.c b/kern/compile/ASST1/.depend.lser_att.c
+new file mode 100644
+index 0000000..7c095cb
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.lser_att.c
+@@ -0,0 +1,7 @@
++lser_att.o: ../../dev/lamebus/lser_att.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../dev/lamebus/lamebus.h ../../include/cpu.h \
++ ../../include/spinlock.h includelinks/machine/spinlock.h \
++ ../../include/threadlist.h includelinks/machine/vm.h \
++ ../../dev/lamebus/lser.h autoconf.h
+diff --git a/kern/compile/ASST1/.depend.lshldi3.c b/kern/compile/ASST1/.depend.lshldi3.c
+new file mode 100644
+index 0000000..19fd20f
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.lshldi3.c
+@@ -0,0 +1,6 @@
++lshldi3.o: ../../../common/gcc-millicode/lshldi3.c \
++ ../../../common/gcc-millicode/longlong.h ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/endian.h \
++ ../../include/kern/endian.h includelinks/kern/machine/endian.h \
++ ../../include/limits.h ../../include/kern/limits.h
+diff --git a/kern/compile/ASST1/.depend.lshrdi3.c b/kern/compile/ASST1/.depend.lshrdi3.c
+new file mode 100644
+index 0000000..f867bad
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.lshrdi3.c
+@@ -0,0 +1,6 @@
++lshrdi3.o: ../../../common/gcc-millicode/lshrdi3.c \
++ ../../../common/gcc-millicode/longlong.h ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/endian.h \
++ ../../include/kern/endian.h includelinks/kern/machine/endian.h \
++ ../../include/limits.h ../../include/kern/limits.h
+diff --git a/kern/compile/ASST1/.depend.ltimer.c b/kern/compile/ASST1/.depend.ltimer.c
+new file mode 100644
+index 0000000..13379e3
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.ltimer.c
+@@ -0,0 +1,9 @@
++ltimer.o: ../../dev/lamebus/ltimer.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/spl.h ../../include/clock.h \
++ ../../include/kern/time.h includelinks/platform/bus.h \
++ includelinks/machine/vm.h ../../dev/lamebus/lamebus.h \
++ ../../include/cpu.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../include/threadlist.h \
++ ../../dev/lamebus/ltimer.h autoconf.h
+diff --git a/kern/compile/ASST1/.depend.ltimer_att.c b/kern/compile/ASST1/.depend.ltimer_att.c
+new file mode 100644
+index 0000000..c7afbc9
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.ltimer_att.c
+@@ -0,0 +1,7 @@
++ltimer_att.o: ../../dev/lamebus/ltimer_att.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../dev/lamebus/lamebus.h ../../include/cpu.h \
++ ../../include/spinlock.h includelinks/machine/spinlock.h \
++ ../../include/threadlist.h includelinks/machine/vm.h \
++ ../../dev/lamebus/ltimer.h autoconf.h
+diff --git a/kern/compile/ASST1/.depend.ltrace.c b/kern/compile/ASST1/.depend.ltrace.c
+new file mode 100644
+index 0000000..4dacdd3
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.ltrace.c
+@@ -0,0 +1,7 @@
++ltrace.o: ../../dev/lamebus/ltrace.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h includelinks/platform/bus.h includelinks/machine/vm.h \
++ ../../dev/lamebus/lamebus.h ../../include/cpu.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../include/threadlist.h \
++ ../../dev/lamebus/ltrace.h autoconf.h
+diff --git a/kern/compile/ASST1/.depend.ltrace_att.c b/kern/compile/ASST1/.depend.ltrace_att.c
+new file mode 100644
+index 0000000..5fe2f14
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.ltrace_att.c
+@@ -0,0 +1,7 @@
++ltrace_att.o: ../../dev/lamebus/ltrace_att.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../dev/lamebus/lamebus.h ../../include/cpu.h \
++ ../../include/spinlock.h includelinks/machine/spinlock.h \
++ ../../include/threadlist.h includelinks/machine/vm.h \
++ ../../dev/lamebus/ltrace.h autoconf.h
+diff --git a/kern/compile/ASST1/.depend.main.c b/kern/compile/ASST1/.depend.main.c
+new file mode 100644
+index 0000000..cdd6610
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.main.c
+@@ -0,0 +1,15 @@
++main.o: ../../main/main.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/wait.h \
++ ../../include/kern/errno.h ../../include/kern/reboot.h \
++ ../../include/kern/unistd.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/spl.h ../../include/clock.h \
++ ../../include/kern/time.h ../../include/thread.h ../../include/array.h \
++ ../../include/spinlock.h includelinks/machine/spinlock.h \
++ ../../include/threadlist.h includelinks/machine/thread.h \
++ ../../include/setjmp.h includelinks/kern/machine/setjmp.h \
++ ../../include/proc.h ../../include/current.h \
++ includelinks/machine/current.h ../../include/synch.h ../../include/vm.h \
++ includelinks/machine/vm.h ../../include/mainbus.h ../../include/vfs.h \
++ ../../include/buf.h ../../include/device.h ../../include/syscall.h \
++ ../../include/test.h ../../include/version.h autoconf.h
+diff --git a/kern/compile/ASST1/.depend.memcpy.c b/kern/compile/ASST1/.depend.memcpy.c
+new file mode 100644
+index 0000000..0b67cb4
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.memcpy.c
+@@ -0,0 +1,4 @@
++memcpy.o: ../../../common/libc/string/memcpy.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h
+diff --git a/kern/compile/ASST1/.depend.memmove.c b/kern/compile/ASST1/.depend.memmove.c
+new file mode 100644
+index 0000000..4dcbc31
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.memmove.c
+@@ -0,0 +1,4 @@
++memmove.o: ../../../common/libc/string/memmove.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h
+diff --git a/kern/compile/ASST1/.depend.memset.c b/kern/compile/ASST1/.depend.memset.c
+new file mode 100644
+index 0000000..15bb933
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.memset.c
+@@ -0,0 +1,4 @@
++memset.o: ../../../common/libc/string/memset.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h
+diff --git a/kern/compile/ASST1/.depend.menu.c b/kern/compile/ASST1/.depend.menu.c
+new file mode 100644
+index 0000000..0d45641
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.menu.c
+@@ -0,0 +1,15 @@
++menu.o: ../../main/menu.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/kern/reboot.h ../../include/kern/unistd.h \
++ ../../include/limits.h ../../include/kern/limits.h ../../include/lib.h \
++ ../../include/cdefs.h opt-noasserts.h ../../include/uio.h \
++ ../../include/kern/iovec.h ../../include/clock.h \
++ ../../include/kern/time.h ../../include/thread.h ../../include/array.h \
++ ../../include/spinlock.h includelinks/machine/spinlock.h \
++ ../../include/threadlist.h includelinks/machine/thread.h \
++ ../../include/setjmp.h includelinks/kern/machine/setjmp.h \
++ ../../include/proc.h ../../include/vfs.h ../../include/buf.h \
++ ../../include/sfs.h ../../include/fs.h ../../include/vnode.h \
++ ../../include/kern/sfs.h ../../include/syscall.h ../../include/test.h \
++ opt-synchprobs.h opt-sfs.h opt-net.h
+diff --git a/kern/compile/ASST1/.depend.misc.c b/kern/compile/ASST1/.depend.misc.c
+new file mode 100644
+index 0000000..7aaf652
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.misc.c
+@@ -0,0 +1,4 @@
++misc.o: ../../lib/misc.c ../../include/types.h ../../include/kern/types.h \
++ includelinks/kern/machine/types.h includelinks/machine/types.h \
++ ../../include/kern/errmsg.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h
+diff --git a/kern/compile/ASST1/.depend.moddi3.c b/kern/compile/ASST1/.depend.moddi3.c
+new file mode 100644
+index 0000000..4a05e30
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.moddi3.c
+@@ -0,0 +1,6 @@
++moddi3.o: ../../../common/gcc-millicode/moddi3.c \
++ ../../../common/gcc-millicode/longlong.h ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/endian.h \
++ ../../include/kern/endian.h includelinks/kern/machine/endian.h \
++ ../../include/limits.h ../../include/kern/limits.h
+diff --git a/kern/compile/ASST1/.depend.muldi3.c b/kern/compile/ASST1/.depend.muldi3.c
+new file mode 100644
+index 0000000..d43769e
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.muldi3.c
+@@ -0,0 +1,6 @@
++muldi3.o: ../../../common/gcc-millicode/muldi3.c \
++ ../../../common/gcc-millicode/longlong.h ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/endian.h \
++ ../../include/kern/endian.h includelinks/kern/machine/endian.h \
++ ../../include/limits.h ../../include/kern/limits.h
+diff --git a/kern/compile/ASST1/.depend.negdi2.c b/kern/compile/ASST1/.depend.negdi2.c
+new file mode 100644
+index 0000000..6da3714
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.negdi2.c
+@@ -0,0 +1,6 @@
++negdi2.o: ../../../common/gcc-millicode/negdi2.c \
++ ../../../common/gcc-millicode/longlong.h ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/endian.h \
++ ../../include/kern/endian.h includelinks/kern/machine/endian.h \
++ ../../include/limits.h ../../include/kern/limits.h
+diff --git a/kern/compile/ASST1/.depend.notdi2.c b/kern/compile/ASST1/.depend.notdi2.c
+new file mode 100644
+index 0000000..c4f6a31
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.notdi2.c
+@@ -0,0 +1,6 @@
++notdi2.o: ../../../common/gcc-millicode/notdi2.c \
++ ../../../common/gcc-millicode/longlong.h ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/endian.h \
++ ../../include/kern/endian.h includelinks/kern/machine/endian.h \
++ ../../include/limits.h ../../include/kern/limits.h
+diff --git a/kern/compile/ASST1/.depend.proc.c b/kern/compile/ASST1/.depend.proc.c
+new file mode 100644
+index 0000000..157e915
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.proc.c
+@@ -0,0 +1,11 @@
++proc.o: ../../proc/proc.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/spl.h ../../include/cdefs.h \
++ ../../include/proc.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../include/current.h \
++ includelinks/machine/current.h ../../include/thread.h \
++ ../../include/array.h ../../include/lib.h opt-noasserts.h \
++ ../../include/threadlist.h includelinks/machine/thread.h \
++ ../../include/setjmp.h includelinks/kern/machine/setjmp.h \
++ ../../include/addrspace.h ../../include/vm.h includelinks/machine/vm.h \
++ opt-dumbvm.h ../../include/vnode.h
+diff --git a/kern/compile/ASST1/.depend.qdivrem.c b/kern/compile/ASST1/.depend.qdivrem.c
+new file mode 100644
+index 0000000..d85cc1b
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.qdivrem.c
+@@ -0,0 +1,6 @@
++qdivrem.o: ../../../common/gcc-millicode/qdivrem.c \
++ ../../../common/gcc-millicode/longlong.h ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/endian.h \
++ ../../include/kern/endian.h includelinks/kern/machine/endian.h \
++ ../../include/limits.h ../../include/kern/limits.h
+diff --git a/kern/compile/ASST1/.depend.ram.c b/kern/compile/ASST1/.depend.ram.c
+new file mode 100644
+index 0000000..731b6ed
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.ram.c
+@@ -0,0 +1,5 @@
++ram.o: ../../arch/mips/vm/ram.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/vm.h includelinks/machine/vm.h \
++ ../../include/mainbus.h
+diff --git a/kern/compile/ASST1/.depend.random.c b/kern/compile/ASST1/.depend.random.c
+new file mode 100644
+index 0000000..639be22
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.random.c
+@@ -0,0 +1,7 @@
++random.o: ../../dev/generic/random.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/kern/fcntl.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/uio.h ../../include/kern/iovec.h \
++ ../../include/vfs.h ../../include/array.h ../../dev/generic/random.h \
++ ../../include/device.h autoconf.h
+diff --git a/kern/compile/ASST1/.depend.random_lrandom.c b/kern/compile/ASST1/.depend.random_lrandom.c
+new file mode 100644
+index 0000000..b48dd42
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.random_lrandom.c
+@@ -0,0 +1,6 @@
++random_lrandom.o: ../../dev/lamebus/random_lrandom.c \
++ ../../include/types.h ../../include/kern/types.h \
++ includelinks/kern/machine/types.h includelinks/machine/types.h \
++ ../../include/lib.h ../../include/cdefs.h opt-noasserts.h \
++ ../../dev/generic/random.h ../../include/device.h \
++ ../../dev/lamebus/lrandom.h autoconf.h
+diff --git a/kern/compile/ASST1/.depend.rtclock.c b/kern/compile/ASST1/.depend.rtclock.c
+new file mode 100644
+index 0000000..f3c4158
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.rtclock.c
+@@ -0,0 +1,6 @@
++rtclock.o: ../../dev/generic/rtclock.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/lib.h ../../include/cdefs.h opt-noasserts.h \
++ ../../include/clock.h ../../include/kern/time.h \
++ ../../dev/generic/rtclock.h autoconf.h
+diff --git a/kern/compile/ASST1/.depend.rtclock_ltimer.c b/kern/compile/ASST1/.depend.rtclock_ltimer.c
+new file mode 100644
+index 0000000..a9492fc
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.rtclock_ltimer.c
+@@ -0,0 +1,5 @@
++rtclock_ltimer.o: ../../dev/lamebus/rtclock_ltimer.c \
++ ../../include/types.h ../../include/kern/types.h \
++ includelinks/kern/machine/types.h includelinks/machine/types.h \
++ ../../include/lib.h ../../include/cdefs.h opt-noasserts.h \
++ ../../dev/generic/rtclock.h ../../dev/lamebus/ltimer.h autoconf.h
+diff --git a/kern/compile/ASST1/.depend.runprogram.c b/kern/compile/ASST1/.depend.runprogram.c
+new file mode 100644
+index 0000000..a68f9db
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.runprogram.c
+@@ -0,0 +1,12 @@
++runprogram.o: ../../syscall/runprogram.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/kern/fcntl.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/proc.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../include/current.h \
++ includelinks/machine/current.h ../../include/thread.h \
++ ../../include/array.h ../../include/threadlist.h \
++ includelinks/machine/thread.h ../../include/setjmp.h \
++ includelinks/kern/machine/setjmp.h ../../include/addrspace.h \
++ ../../include/vm.h includelinks/machine/vm.h opt-dumbvm.h \
++ ../../include/vfs.h ../../include/syscall.h ../../include/test.h
+diff --git a/kern/compile/ASST1/.depend.semfs_fsops.c b/kern/compile/ASST1/.depend.semfs_fsops.c
+new file mode 100644
+index 0000000..5c8d1ea
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.semfs_fsops.c
+@@ -0,0 +1,7 @@
++semfs_fsops.o: ../../fs/semfs/semfs_fsops.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/synch.h ../../include/spinlock.h ../../include/cdefs.h \
++ includelinks/machine/spinlock.h ../../include/vfs.h \
++ ../../include/array.h ../../include/lib.h opt-noasserts.h \
++ ../../include/fs.h ../../include/vnode.h ../../fs/semfs/semfs.h
+diff --git a/kern/compile/ASST1/.depend.semfs_obj.c b/kern/compile/ASST1/.depend.semfs_obj.c
+new file mode 100644
+index 0000000..a4a6edf
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.semfs_obj.c
+@@ -0,0 +1,7 @@
++semfs_obj.o: ../../fs/semfs/semfs_obj.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/synch.h ../../include/spinlock.h ../../include/cdefs.h \
++ includelinks/machine/spinlock.h ../../fs/semfs/semfs.h \
++ ../../include/array.h ../../include/lib.h opt-noasserts.h \
++ ../../include/fs.h ../../include/vnode.h
+diff --git a/kern/compile/ASST1/.depend.semfs_vnops.c b/kern/compile/ASST1/.depend.semfs_vnops.c
+new file mode 100644
+index 0000000..d94990e
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.semfs_vnops.c
+@@ -0,0 +1,14 @@
++semfs_vnops.o: ../../fs/semfs/semfs_vnops.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/kern/fcntl.h ../../include/stat.h \
++ ../../include/kern/stat.h ../../include/kern/stattypes.h \
++ ../../include/uio.h ../../include/kern/iovec.h ../../include/synch.h \
++ ../../include/spinlock.h ../../include/cdefs.h \
++ includelinks/machine/spinlock.h ../../include/thread.h \
++ ../../include/array.h ../../include/lib.h opt-noasserts.h \
++ ../../include/threadlist.h includelinks/machine/thread.h \
++ ../../include/setjmp.h includelinks/kern/machine/setjmp.h \
++ ../../include/proc.h ../../include/current.h \
++ includelinks/machine/current.h ../../include/vfs.h ../../include/vnode.h \
++ ../../fs/semfs/semfs.h ../../include/fs.h
+diff --git a/kern/compile/ASST1/.depend.semunit.c b/kern/compile/ASST1/.depend.semunit.c
+new file mode 100644
+index 0000000..91ca484
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.semunit.c
+@@ -0,0 +1,9 @@
++semunit.o: ../../test/semunit.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/spinlock.h includelinks/machine/spinlock.h \
++ ../../include/synch.h ../../include/thread.h ../../include/array.h \
++ ../../include/threadlist.h includelinks/machine/thread.h \
++ ../../include/setjmp.h includelinks/kern/machine/setjmp.h \
++ ../../include/current.h includelinks/machine/current.h \
++ ../../include/clock.h ../../include/kern/time.h ../../include/test.h
+diff --git a/kern/compile/ASST1/.depend.setjmp.S b/kern/compile/ASST1/.depend.setjmp.S
+new file mode 100644
+index 0000000..d60c02b
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.setjmp.S
+@@ -0,0 +1,2 @@
++setjmp.o: ../../../common/libc/arch/mips/setjmp.S \
++ includelinks/kern/mips/regdefs.h
+diff --git a/kern/compile/ASST1/.depend.sfs_balloc.c b/kern/compile/ASST1/.depend.sfs_balloc.c
+new file mode 100644
+index 0000000..be9bb84
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.sfs_balloc.c
+@@ -0,0 +1,8 @@
++sfs_balloc.o: ../../fs/sfs/sfs_balloc.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/bitmap.h ../../include/synch.h \
++ ../../include/spinlock.h includelinks/machine/spinlock.h \
++ ../../include/buf.h ../../include/sfs.h ../../include/fs.h \
++ ../../include/vnode.h ../../include/kern/sfs.h ../../fs/sfs/sfsprivate.h \
++ ../../include/uio.h ../../include/kern/iovec.h
+diff --git a/kern/compile/ASST1/.depend.sfs_bmap.c b/kern/compile/ASST1/.depend.sfs_bmap.c
+new file mode 100644
+index 0000000..876c342
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.sfs_bmap.c
+@@ -0,0 +1,9 @@
++sfs_bmap.o: ../../fs/sfs/sfs_bmap.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/lib.h ../../include/cdefs.h opt-noasserts.h \
++ ../../include/synch.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../include/vfs.h \
++ ../../include/array.h ../../include/buf.h ../../include/sfs.h \
++ ../../include/fs.h ../../include/vnode.h ../../include/kern/sfs.h \
++ ../../fs/sfs/sfsprivate.h ../../include/uio.h ../../include/kern/iovec.h
+diff --git a/kern/compile/ASST1/.depend.sfs_dir.c b/kern/compile/ASST1/.depend.sfs_dir.c
+new file mode 100644
+index 0000000..ad4b515
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.sfs_dir.c
+@@ -0,0 +1,8 @@
++sfs_dir.o: ../../fs/sfs/sfs_dir.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/lib.h ../../include/cdefs.h opt-noasserts.h \
++ ../../include/synch.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../include/buf.h ../../include/sfs.h \
++ ../../include/fs.h ../../include/vnode.h ../../include/kern/sfs.h \
++ ../../fs/sfs/sfsprivate.h ../../include/uio.h ../../include/kern/iovec.h
+diff --git a/kern/compile/ASST1/.depend.sfs_fsops.c b/kern/compile/ASST1/.depend.sfs_fsops.c
+new file mode 100644
+index 0000000..20f9808
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.sfs_fsops.c
+@@ -0,0 +1,10 @@
++sfs_fsops.o: ../../fs/sfs/sfs_fsops.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/lib.h ../../include/cdefs.h opt-noasserts.h \
++ ../../include/array.h ../../include/bitmap.h ../../include/synch.h \
++ ../../include/spinlock.h includelinks/machine/spinlock.h \
++ ../../include/uio.h ../../include/kern/iovec.h ../../include/vfs.h \
++ ../../include/buf.h ../../include/device.h ../../include/sfs.h \
++ ../../include/fs.h ../../include/vnode.h ../../include/kern/sfs.h \
++ ../../fs/sfs/sfsprivate.h
+diff --git a/kern/compile/ASST1/.depend.sfs_inode.c b/kern/compile/ASST1/.depend.sfs_inode.c
+new file mode 100644
+index 0000000..d6b46e9
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.sfs_inode.c
+@@ -0,0 +1,13 @@
++sfs_inode.o: ../../fs/sfs/sfs_inode.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/lib.h ../../include/cdefs.h opt-noasserts.h \
++ ../../include/synch.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../include/thread.h \
++ ../../include/array.h ../../include/threadlist.h \
++ includelinks/machine/thread.h ../../include/setjmp.h \
++ includelinks/kern/machine/setjmp.h ../../include/current.h \
++ includelinks/machine/current.h ../../include/vfs.h ../../include/buf.h \
++ ../../include/sfs.h ../../include/fs.h ../../include/vnode.h \
++ ../../include/kern/sfs.h ../../fs/sfs/sfsprivate.h ../../include/uio.h \
++ ../../include/kern/iovec.h
+diff --git a/kern/compile/ASST1/.depend.sfs_io.c b/kern/compile/ASST1/.depend.sfs_io.c
+new file mode 100644
+index 0000000..68998d4
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.sfs_io.c
+@@ -0,0 +1,9 @@
++sfs_io.o: ../../fs/sfs/sfs_io.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/lib.h ../../include/cdefs.h opt-noasserts.h \
++ ../../include/uio.h ../../include/kern/iovec.h ../../include/synch.h \
++ ../../include/spinlock.h includelinks/machine/spinlock.h \
++ ../../include/vfs.h ../../include/array.h ../../include/buf.h \
++ ../../include/device.h ../../include/sfs.h ../../include/fs.h \
++ ../../include/vnode.h ../../include/kern/sfs.h ../../fs/sfs/sfsprivate.h
+diff --git a/kern/compile/ASST1/.depend.sfs_jphys.c b/kern/compile/ASST1/.depend.sfs_jphys.c
+new file mode 100644
+index 0000000..1e341ae
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.sfs_jphys.c
+@@ -0,0 +1,13 @@
++sfs_jphys.o: ../../fs/sfs/sfs_jphys.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/lib.h ../../include/cdefs.h opt-noasserts.h \
++ ../../include/wchan.h ../../include/synch.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../include/proc.h \
++ ../../include/current.h includelinks/machine/current.h \
++ ../../include/thread.h ../../include/array.h ../../include/threadlist.h \
++ includelinks/machine/thread.h ../../include/setjmp.h \
++ includelinks/kern/machine/setjmp.h ../../include/buf.h \
++ ../../include/sfs.h ../../include/fs.h ../../include/vnode.h \
++ ../../include/kern/sfs.h ../../fs/sfs/sfsprivate.h ../../include/uio.h \
++ ../../include/kern/iovec.h
+diff --git a/kern/compile/ASST1/.depend.sfs_vnops.c b/kern/compile/ASST1/.depend.sfs_vnops.c
+new file mode 100644
+index 0000000..6125822
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.sfs_vnops.c
+@@ -0,0 +1,12 @@
++sfs_vnops.o: ../../fs/sfs/sfs_vnops.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/kern/fcntl.h ../../include/limits.h \
++ ../../include/kern/limits.h ../../include/stat.h \
++ ../../include/kern/stat.h ../../include/kern/stattypes.h \
++ ../../include/lib.h ../../include/cdefs.h opt-noasserts.h \
++ ../../include/uio.h ../../include/kern/iovec.h ../../include/synch.h \
++ ../../include/spinlock.h includelinks/machine/spinlock.h \
++ ../../include/vfs.h ../../include/array.h ../../include/buf.h \
++ ../../include/sfs.h ../../include/fs.h ../../include/vnode.h \
++ ../../include/kern/sfs.h ../../fs/sfs/sfsprivate.h
+diff --git a/kern/compile/ASST1/.depend.snprintf.c b/kern/compile/ASST1/.depend.snprintf.c
+new file mode 100644
+index 0000000..711ba8f
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.snprintf.c
+@@ -0,0 +1,4 @@
++snprintf.o: ../../../common/libc/printf/snprintf.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/stdarg.h
+diff --git a/kern/compile/ASST1/.depend.spinlock.c b/kern/compile/ASST1/.depend.spinlock.c
+new file mode 100644
+index 0000000..28a7be1
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.spinlock.c
+@@ -0,0 +1,10 @@
++spinlock.o: ../../thread/spinlock.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/cpu.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../include/threadlist.h \
++ includelinks/machine/vm.h ../../include/spl.h ../../include/membar.h \
++ includelinks/machine/membar.h ../../include/current.h \
++ includelinks/machine/current.h ../../include/thread.h \
++ ../../include/array.h includelinks/machine/thread.h \
++ ../../include/setjmp.h includelinks/kern/machine/setjmp.h
+diff --git a/kern/compile/ASST1/.depend.spl.c b/kern/compile/ASST1/.depend.spl.c
+new file mode 100644
+index 0000000..49c9fac
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.spl.c
+@@ -0,0 +1,9 @@
++spl.o: ../../thread/spl.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/cpu.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../include/threadlist.h \
++ includelinks/machine/vm.h ../../include/spl.h ../../include/thread.h \
++ ../../include/array.h includelinks/machine/thread.h \
++ ../../include/setjmp.h includelinks/kern/machine/setjmp.h \
++ ../../include/current.h includelinks/machine/current.h
+diff --git a/kern/compile/ASST1/.depend.start.S b/kern/compile/ASST1/.depend.start.S
+new file mode 100644
+index 0000000..ecb1ac8
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.start.S
+@@ -0,0 +1,2 @@
++start.o: ../../arch/sys161/main/start.S includelinks/kern/mips/regdefs.h \
++ includelinks/mips/specialreg.h
+diff --git a/kern/compile/ASST1/.depend.strcat.c b/kern/compile/ASST1/.depend.strcat.c
+new file mode 100644
+index 0000000..26e2998
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.strcat.c
+@@ -0,0 +1,4 @@
++strcat.o: ../../../common/libc/string/strcat.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h
+diff --git a/kern/compile/ASST1/.depend.strchr.c b/kern/compile/ASST1/.depend.strchr.c
+new file mode 100644
+index 0000000..e225d98
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.strchr.c
+@@ -0,0 +1,4 @@
++strchr.o: ../../../common/libc/string/strchr.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h
+diff --git a/kern/compile/ASST1/.depend.strcmp.c b/kern/compile/ASST1/.depend.strcmp.c
+new file mode 100644
+index 0000000..7022ede
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.strcmp.c
+@@ -0,0 +1,4 @@
++strcmp.o: ../../../common/libc/string/strcmp.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h
+diff --git a/kern/compile/ASST1/.depend.strcpy.c b/kern/compile/ASST1/.depend.strcpy.c
+new file mode 100644
+index 0000000..a999341
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.strcpy.c
+@@ -0,0 +1,4 @@
++strcpy.o: ../../../common/libc/string/strcpy.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h
+diff --git a/kern/compile/ASST1/.depend.strlen.c b/kern/compile/ASST1/.depend.strlen.c
+new file mode 100644
+index 0000000..4eba669
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.strlen.c
+@@ -0,0 +1,4 @@
++strlen.o: ../../../common/libc/string/strlen.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h
+diff --git a/kern/compile/ASST1/.depend.strrchr.c b/kern/compile/ASST1/.depend.strrchr.c
+new file mode 100644
+index 0000000..2f185f3
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.strrchr.c
+@@ -0,0 +1,4 @@
++strrchr.o: ../../../common/libc/string/strrchr.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h
+diff --git a/kern/compile/ASST1/.depend.strtok_r.c b/kern/compile/ASST1/.depend.strtok_r.c
+new file mode 100644
+index 0000000..8abfe38
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.strtok_r.c
+@@ -0,0 +1,4 @@
++strtok_r.o: ../../../common/libc/string/strtok_r.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h
+diff --git a/kern/compile/ASST1/.depend.subdi3.c b/kern/compile/ASST1/.depend.subdi3.c
+new file mode 100644
+index 0000000..b9ebb1b
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.subdi3.c
+@@ -0,0 +1,6 @@
++subdi3.o: ../../../common/gcc-millicode/subdi3.c \
++ ../../../common/gcc-millicode/longlong.h ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/endian.h \
++ ../../include/kern/endian.h includelinks/kern/machine/endian.h \
++ ../../include/limits.h ../../include/kern/limits.h
+diff --git a/kern/compile/ASST1/.depend.switch.S b/kern/compile/ASST1/.depend.switch.S
+new file mode 100644
+index 0000000..479088e
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.switch.S
+@@ -0,0 +1,2 @@
++switch.o: ../../arch/mips/thread/switch.S \
++ includelinks/kern/mips/regdefs.h
+diff --git a/kern/compile/ASST1/.depend.switchframe.c b/kern/compile/ASST1/.depend.switchframe.c
+new file mode 100644
+index 0000000..4d3fa88
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.switchframe.c
+@@ -0,0 +1,8 @@
++switchframe.o: ../../arch/mips/thread/switchframe.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/thread.h ../../include/array.h \
++ ../../include/spinlock.h includelinks/machine/spinlock.h \
++ ../../include/threadlist.h includelinks/machine/thread.h \
++ ../../include/setjmp.h includelinks/kern/machine/setjmp.h \
++ ../../include/threadprivate.h ../../arch/mips/thread/switchframe.h
+diff --git a/kern/compile/ASST1/.depend.synch.c b/kern/compile/ASST1/.depend.synch.c
+new file mode 100644
+index 0000000..5ecbb85
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.synch.c
+@@ -0,0 +1,9 @@
++synch.o: ../../thread/synch.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/spinlock.h includelinks/machine/spinlock.h \
++ ../../include/wchan.h ../../include/thread.h ../../include/array.h \
++ ../../include/threadlist.h includelinks/machine/thread.h \
++ ../../include/setjmp.h includelinks/kern/machine/setjmp.h \
++ ../../include/current.h includelinks/machine/current.h \
++ ../../include/synch.h
+diff --git a/kern/compile/ASST1/.depend.synchtest.c b/kern/compile/ASST1/.depend.synchtest.c
+new file mode 100644
+index 0000000..a0b8c98
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.synchtest.c
+@@ -0,0 +1,9 @@
++synchtest.o: ../../test/synchtest.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/clock.h ../../include/kern/time.h \
++ ../../include/thread.h ../../include/array.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../include/threadlist.h \
++ includelinks/machine/thread.h ../../include/setjmp.h \
++ includelinks/kern/machine/setjmp.h ../../include/synch.h \
++ ../../include/test.h
+diff --git a/kern/compile/ASST1/.depend.syscall.c b/kern/compile/ASST1/.depend.syscall.c
+new file mode 100644
+index 0000000..03853f8
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.syscall.c
+@@ -0,0 +1,10 @@
++syscall.o: ../../arch/mips/syscall/syscall.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/kern/syscall.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h includelinks/mips/trapframe.h ../../include/thread.h \
++ ../../include/array.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../include/threadlist.h \
++ includelinks/machine/thread.h ../../include/setjmp.h \
++ includelinks/kern/machine/setjmp.h ../../include/current.h \
++ includelinks/machine/current.h ../../include/syscall.h
+diff --git a/kern/compile/ASST1/.depend.thread.c b/kern/compile/ASST1/.depend.thread.c
+new file mode 100644
+index 0000000..bec7aa8
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.thread.c
+@@ -0,0 +1,13 @@
++thread.o: ../../thread/thread.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/lib.h ../../include/cdefs.h opt-noasserts.h \
++ ../../include/array.h ../../include/cpu.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../include/threadlist.h \
++ includelinks/machine/vm.h ../../include/spl.h ../../include/wchan.h \
++ ../../include/thread.h includelinks/machine/thread.h \
++ ../../include/setjmp.h includelinks/kern/machine/setjmp.h \
++ ../../include/threadprivate.h ../../include/proc.h \
++ ../../include/current.h includelinks/machine/current.h \
++ ../../include/synch.h ../../include/addrspace.h ../../include/vm.h \
++ opt-dumbvm.h ../../include/mainbus.h ../../include/vnode.h
+diff --git a/kern/compile/ASST1/.depend.thread_machdep.c b/kern/compile/ASST1/.depend.thread_machdep.c
+new file mode 100644
+index 0000000..595bfbc
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.thread_machdep.c
+@@ -0,0 +1,8 @@
++thread_machdep.o: ../../arch/mips/thread/thread_machdep.c \
++ ../../include/types.h ../../include/kern/types.h \
++ includelinks/kern/machine/types.h includelinks/machine/types.h \
++ ../../include/lib.h ../../include/cdefs.h opt-noasserts.h \
++ ../../include/thread.h ../../include/array.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../include/threadlist.h \
++ includelinks/machine/thread.h ../../include/setjmp.h \
++ includelinks/kern/machine/setjmp.h ../../include/threadprivate.h
+diff --git a/kern/compile/ASST1/.depend.threadlist.c b/kern/compile/ASST1/.depend.threadlist.c
+new file mode 100644
+index 0000000..f1e1e53
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.threadlist.c
+@@ -0,0 +1,7 @@
++threadlist.o: ../../thread/threadlist.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/thread.h ../../include/array.h \
++ ../../include/spinlock.h includelinks/machine/spinlock.h \
++ ../../include/threadlist.h includelinks/machine/thread.h \
++ ../../include/setjmp.h includelinks/kern/machine/setjmp.h
+diff --git a/kern/compile/ASST1/.depend.threadlisttest.c b/kern/compile/ASST1/.depend.threadlisttest.c
+new file mode 100644
+index 0000000..7dc2f9a
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.threadlisttest.c
+@@ -0,0 +1,8 @@
++threadlisttest.o: ../../test/threadlisttest.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/thread.h ../../include/array.h \
++ ../../include/spinlock.h includelinks/machine/spinlock.h \
++ ../../include/threadlist.h includelinks/machine/thread.h \
++ ../../include/setjmp.h includelinks/kern/machine/setjmp.h \
++ ../../include/test.h
+diff --git a/kern/compile/ASST1/.depend.threadstart.S b/kern/compile/ASST1/.depend.threadstart.S
+new file mode 100644
+index 0000000..9476eab
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.threadstart.S
+@@ -0,0 +1,2 @@
++threadstart.o: ../../arch/mips/thread/threadstart.S \
++ includelinks/kern/mips/regdefs.h
+diff --git a/kern/compile/ASST1/.depend.threadtest.c b/kern/compile/ASST1/.depend.threadtest.c
+new file mode 100644
+index 0000000..2867171
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.threadtest.c
+@@ -0,0 +1,8 @@
++threadtest.o: ../../test/threadtest.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/thread.h ../../include/array.h \
++ ../../include/spinlock.h includelinks/machine/spinlock.h \
++ ../../include/threadlist.h includelinks/machine/thread.h \
++ ../../include/setjmp.h includelinks/kern/machine/setjmp.h \
++ ../../include/synch.h ../../include/test.h
+diff --git a/kern/compile/ASST1/.depend.time.c b/kern/compile/ASST1/.depend.time.c
+new file mode 100644
+index 0000000..f453151
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.time.c
+@@ -0,0 +1,3 @@
++time.o: ../../lib/time.c ../../include/types.h ../../include/kern/types.h \
++ includelinks/kern/machine/types.h includelinks/machine/types.h \
++ ../../include/clock.h ../../include/kern/time.h
+diff --git a/kern/compile/ASST1/.depend.time_syscalls.c b/kern/compile/ASST1/.depend.time_syscalls.c
+new file mode 100644
+index 0000000..ad82140
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.time_syscalls.c
+@@ -0,0 +1,5 @@
++time_syscalls.o: ../../syscall/time_syscalls.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/clock.h \
++ ../../include/kern/time.h ../../include/copyinout.h \
++ ../../include/syscall.h ../../include/cdefs.h
+diff --git a/kern/compile/ASST1/.depend.tlb-mips161.S b/kern/compile/ASST1/.depend.tlb-mips161.S
+new file mode 100644
+index 0000000..4d4e680
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.tlb-mips161.S
+@@ -0,0 +1,2 @@
++tlb-mips161.o: ../../arch/mips/vm/tlb-mips161.S \
++ includelinks/kern/mips/regdefs.h includelinks/mips/specialreg.h
+diff --git a/kern/compile/ASST1/.depend.trap.c b/kern/compile/ASST1/.depend.trap.c
+new file mode 100644
+index 0000000..e854472
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.trap.c
+@@ -0,0 +1,13 @@
++trap.o: ../../arch/mips/locore/trap.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/signal.h \
++ includelinks/kern/machine/signal.h ../../include/kern/signal.h \
++ ../../include/lib.h ../../include/cdefs.h opt-noasserts.h \
++ includelinks/mips/specialreg.h includelinks/mips/trapframe.h \
++ ../../include/cpu.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../include/threadlist.h \
++ includelinks/machine/vm.h ../../include/spl.h ../../include/thread.h \
++ ../../include/array.h includelinks/machine/thread.h \
++ ../../include/setjmp.h includelinks/kern/machine/setjmp.h \
++ ../../include/current.h includelinks/machine/current.h \
++ ../../include/vm.h ../../include/mainbus.h ../../include/syscall.h
+diff --git a/kern/compile/ASST1/.depend.tt3.c b/kern/compile/ASST1/.depend.tt3.c
+new file mode 100644
+index 0000000..4040d9b
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.tt3.c
+@@ -0,0 +1,8 @@
++tt3.o: ../../test/tt3.c ../../include/types.h ../../include/kern/types.h \
++ includelinks/kern/machine/types.h includelinks/machine/types.h \
++ ../../include/lib.h ../../include/cdefs.h opt-noasserts.h \
++ ../../include/wchan.h ../../include/thread.h ../../include/array.h \
++ ../../include/spinlock.h includelinks/machine/spinlock.h \
++ ../../include/threadlist.h includelinks/machine/thread.h \
++ ../../include/setjmp.h includelinks/kern/machine/setjmp.h \
++ ../../include/synch.h ../../include/test.h
+diff --git a/kern/compile/ASST1/.depend.ucmpdi2.c b/kern/compile/ASST1/.depend.ucmpdi2.c
+new file mode 100644
+index 0000000..d3b1030
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.ucmpdi2.c
+@@ -0,0 +1,6 @@
++ucmpdi2.o: ../../../common/gcc-millicode/ucmpdi2.c \
++ ../../../common/gcc-millicode/longlong.h ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/endian.h \
++ ../../include/kern/endian.h includelinks/kern/machine/endian.h \
++ ../../include/limits.h ../../include/kern/limits.h
+diff --git a/kern/compile/ASST1/.depend.udivdi3.c b/kern/compile/ASST1/.depend.udivdi3.c
+new file mode 100644
+index 0000000..a45ad9f
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.udivdi3.c
+@@ -0,0 +1,6 @@
++udivdi3.o: ../../../common/gcc-millicode/udivdi3.c \
++ ../../../common/gcc-millicode/longlong.h ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/endian.h \
++ ../../include/kern/endian.h includelinks/kern/machine/endian.h \
++ ../../include/limits.h ../../include/kern/limits.h
+diff --git a/kern/compile/ASST1/.depend.uio.c b/kern/compile/ASST1/.depend.uio.c
+new file mode 100644
+index 0000000..56932e2
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.uio.c
+@@ -0,0 +1,9 @@
++uio.o: ../../lib/uio.c ../../include/types.h ../../include/kern/types.h \
++ includelinks/kern/machine/types.h includelinks/machine/types.h \
++ ../../include/lib.h ../../include/cdefs.h opt-noasserts.h \
++ ../../include/uio.h ../../include/kern/iovec.h ../../include/proc.h \
++ ../../include/spinlock.h includelinks/machine/spinlock.h \
++ ../../include/current.h includelinks/machine/current.h \
++ ../../include/thread.h ../../include/array.h ../../include/threadlist.h \
++ includelinks/machine/thread.h ../../include/setjmp.h \
++ includelinks/kern/machine/setjmp.h ../../include/copyinout.h
+diff --git a/kern/compile/ASST1/.depend.umoddi3.c b/kern/compile/ASST1/.depend.umoddi3.c
+new file mode 100644
+index 0000000..785c65d
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.umoddi3.c
+@@ -0,0 +1,6 @@
++umoddi3.o: ../../../common/gcc-millicode/umoddi3.c \
++ ../../../common/gcc-millicode/longlong.h ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/endian.h \
++ ../../include/kern/endian.h includelinks/kern/machine/endian.h \
++ ../../include/limits.h ../../include/kern/limits.h
+diff --git a/kern/compile/ASST1/.depend.vfscwd.c b/kern/compile/ASST1/.depend.vfscwd.c
+new file mode 100644
+index 0000000..4f572eb
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.vfscwd.c
+@@ -0,0 +1,13 @@
++vfscwd.o: ../../vfs/vfscwd.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/stat.h ../../include/kern/stat.h \
++ ../../include/kern/stattypes.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/uio.h ../../include/kern/iovec.h \
++ ../../include/proc.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../include/current.h \
++ includelinks/machine/current.h ../../include/thread.h \
++ ../../include/array.h ../../include/threadlist.h \
++ includelinks/machine/thread.h ../../include/setjmp.h \
++ includelinks/kern/machine/setjmp.h ../../include/vfs.h \
++ ../../include/fs.h ../../include/vnode.h
+diff --git a/kern/compile/ASST1/.depend.vfsfail.c b/kern/compile/ASST1/.depend.vfsfail.c
+new file mode 100644
+index 0000000..fb59aa7
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.vfsfail.c
+@@ -0,0 +1,5 @@
++vfsfail.o: ../../vfs/vfsfail.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/vnode.h ../../include/spinlock.h ../../include/cdefs.h \
++ includelinks/machine/spinlock.h
+diff --git a/kern/compile/ASST1/.depend.vfslist.c b/kern/compile/ASST1/.depend.vfslist.c
+new file mode 100644
+index 0000000..7ddcc06
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.vfslist.c
+@@ -0,0 +1,7 @@
++vfslist.o: ../../vfs/vfslist.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/lib.h ../../include/cdefs.h opt-noasserts.h \
++ ../../include/array.h ../../include/synch.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../include/vfs.h ../../include/fs.h \
++ ../../include/vnode.h ../../include/device.h
+diff --git a/kern/compile/ASST1/.depend.vfslookup.c b/kern/compile/ASST1/.depend.vfslookup.c
+new file mode 100644
+index 0000000..fe59e8f
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.vfslookup.c
+@@ -0,0 +1,8 @@
++vfslookup.o: ../../vfs/vfslookup.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/limits.h ../../include/kern/limits.h ../../include/lib.h \
++ ../../include/cdefs.h opt-noasserts.h ../../include/synch.h \
++ ../../include/spinlock.h includelinks/machine/spinlock.h \
++ ../../include/vfs.h ../../include/array.h ../../include/fs.h \
++ ../../include/vnode.h
+diff --git a/kern/compile/ASST1/.depend.vfspath.c b/kern/compile/ASST1/.depend.vfspath.c
+new file mode 100644
+index 0000000..1a7ced0
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.vfspath.c
+@@ -0,0 +1,8 @@
++vfspath.o: ../../vfs/vfspath.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/kern/fcntl.h ../../include/limits.h \
++ ../../include/kern/limits.h ../../include/lib.h ../../include/cdefs.h \
++ opt-noasserts.h ../../include/vfs.h ../../include/array.h \
++ ../../include/vnode.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h
+diff --git a/kern/compile/ASST1/.depend.vnode.c b/kern/compile/ASST1/.depend.vnode.c
+new file mode 100644
+index 0000000..53c558c
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.vnode.c
+@@ -0,0 +1,7 @@
++vnode.o: ../../vfs/vnode.c ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/kern/errno.h \
++ ../../include/lib.h ../../include/cdefs.h opt-noasserts.h \
++ ../../include/synch.h ../../include/spinlock.h \
++ includelinks/machine/spinlock.h ../../include/vfs.h \
++ ../../include/array.h ../../include/vnode.h
+diff --git a/kern/compile/ASST1/.depend.xordi3.c b/kern/compile/ASST1/.depend.xordi3.c
+new file mode 100644
+index 0000000..c973bcd
+--- /dev/null
++++ b/kern/compile/ASST1/.depend.xordi3.c
+@@ -0,0 +1,6 @@
++xordi3.o: ../../../common/gcc-millicode/xordi3.c \
++ ../../../common/gcc-millicode/longlong.h ../../include/types.h \
++ ../../include/kern/types.h includelinks/kern/machine/types.h \
++ includelinks/machine/types.h ../../include/endian.h \
++ ../../include/kern/endian.h includelinks/kern/machine/endian.h \
++ ../../include/limits.h ../../include/kern/limits.h
+diff --git a/kern/compile/ASST1/Makefile b/kern/compile/ASST1/Makefile
+new file mode 100644
+index 0000000..079aad6
+--- /dev/null
++++ b/kern/compile/ASST1/Makefile
+@@ -0,0 +1,15 @@
++# Automatically generated by config; do not edit.
++#
++
++# Top of the kernel tree
++KTOP=../..
++# Top of the whole tree
++TOP=$(KTOP)/..
++# Debug vs. optimize
++KDEBUG=-g
++# Name of the kernel config file
++CONFNAME=ASST1
++
++.include "$(TOP)/mk/os161.config.mk"
++.include "files.mk"
++.include "$(TOP)/mk/os161.kernel.mk"
+diff --git a/kern/compile/ASST1/__printf.o b/kern/compile/ASST1/__printf.o
+new file mode 100644
+index 0000000..4e2fa2e
+Binary files /dev/null and b/kern/compile/ASST1/__printf.o differ
+diff --git a/kern/compile/ASST1/adddi3.o b/kern/compile/ASST1/adddi3.o
+new file mode 100644
+index 0000000..0fcce3d
+Binary files /dev/null and b/kern/compile/ASST1/adddi3.o differ
+diff --git a/kern/compile/ASST1/airballoon.o b/kern/compile/ASST1/airballoon.o
+new file mode 100644
+index 0000000..3d86de7
+Binary files /dev/null and b/kern/compile/ASST1/airballoon.o differ
+diff --git a/kern/compile/ASST1/anddi3.o b/kern/compile/ASST1/anddi3.o
+new file mode 100644
+index 0000000..c4ab31d
+Binary files /dev/null and b/kern/compile/ASST1/anddi3.o differ
+diff --git a/kern/compile/ASST1/array.o b/kern/compile/ASST1/array.o
+new file mode 100644
+index 0000000..c6b0cad
+Binary files /dev/null and b/kern/compile/ASST1/array.o differ
+diff --git a/kern/compile/ASST1/arraytest.o b/kern/compile/ASST1/arraytest.o
+new file mode 100644
+index 0000000..a34e87f
+Binary files /dev/null and b/kern/compile/ASST1/arraytest.o differ
+diff --git a/kern/compile/ASST1/ashldi3.o b/kern/compile/ASST1/ashldi3.o
+new file mode 100644
+index 0000000..40229e4
+Binary files /dev/null and b/kern/compile/ASST1/ashldi3.o differ
+diff --git a/kern/compile/ASST1/ashrdi3.o b/kern/compile/ASST1/ashrdi3.o
+new file mode 100644
+index 0000000..5dc2dea
+Binary files /dev/null and b/kern/compile/ASST1/ashrdi3.o differ
+diff --git a/kern/compile/ASST1/atoi.o b/kern/compile/ASST1/atoi.o
+new file mode 100644
+index 0000000..8e63c82
+Binary files /dev/null and b/kern/compile/ASST1/atoi.o differ
+diff --git a/kern/compile/ASST1/autoconf.c b/kern/compile/ASST1/autoconf.c
+new file mode 100644
+index 0000000..117c315
+--- /dev/null
++++ b/kern/compile/ASST1/autoconf.c
+@@ -0,0 +1,410 @@
++/* Automatically generated; do not edit */
++#include <types.h>
++#include <lib.h>
++#include "autoconf.h"
++
++static void autoconf_beep(struct beep_softc *, int);
++static void autoconf_con(struct con_softc *, int);
++static void autoconf_emu(struct emu_softc *, int);
++static void autoconf_lhd(struct lhd_softc *, int);
++static void autoconf_lrandom(struct lrandom_softc *, int);
++static void autoconf_lser(struct lser_softc *, int);
++static void autoconf_ltimer(struct ltimer_softc *, int);
++static void autoconf_ltrace(struct ltrace_softc *, int);
++static void autoconf_random(struct random_softc *, int);
++static void autoconf_rtclock(struct rtclock_softc *, int);
++static int nextunit_beep;
++static int nextunit_con;
++static int nextunit_emu;
++static int nextunit_lhd;
++static int nextunit_lrandom;
++static int nextunit_lser;
++static int nextunit_ltimer;
++static int nextunit_ltrace;
++static int nextunit_random;
++static int nextunit_rtclock;
++
++static
++int
++tryattach_emu_to_lamebus(int devunit, struct lamebus_softc *bus, int busunit)
++{
++	struct emu_softc *dev;
++	int result;
++
++	dev = attach_emu_to_lamebus(devunit, bus);
++	if (dev==NULL) {
++		return -1;
++	}
++	kprintf("emu%d at lamebus%d", devunit, busunit);
++	result = config_emu(dev, devunit);
++	if (result != 0) {
++		kprintf(": %s\n", strerror(result));
++		/* should really clean up dev */
++		return result;
++	}
++	kprintf("\n");
++	nextunit_emu = devunit+1;
++	autoconf_emu(dev, devunit);
++	return 0;
++}
++
++static
++int
++tryattach_ltrace_to_lamebus(int devunit, struct lamebus_softc *bus, int busunit)
++{
++	struct ltrace_softc *dev;
++	int result;
++
++	dev = attach_ltrace_to_lamebus(devunit, bus);
++	if (dev==NULL) {
++		return -1;
++	}
++	kprintf("ltrace%d at lamebus%d", devunit, busunit);
++	result = config_ltrace(dev, devunit);
++	if (result != 0) {
++		kprintf(": %s\n", strerror(result));
++		/* should really clean up dev */
++		return result;
++	}
++	kprintf("\n");
++	nextunit_ltrace = devunit+1;
++	autoconf_ltrace(dev, devunit);
++	return 0;
++}
++
++static
++int
++tryattach_ltimer_to_lamebus(int devunit, struct lamebus_softc *bus, int busunit)
++{
++	struct ltimer_softc *dev;
++	int result;
++
++	dev = attach_ltimer_to_lamebus(devunit, bus);
++	if (dev==NULL) {
++		return -1;
++	}
++	kprintf("ltimer%d at lamebus%d", devunit, busunit);
++	result = config_ltimer(dev, devunit);
++	if (result != 0) {
++		kprintf(": %s\n", strerror(result));
++		/* should really clean up dev */
++		return result;
++	}
++	kprintf("\n");
++	nextunit_ltimer = devunit+1;
++	autoconf_ltimer(dev, devunit);
++	return 0;
++}
++
++static
++int
++tryattach_lrandom_to_lamebus(int devunit, struct lamebus_softc *bus, int busunit)
++{
++	struct lrandom_softc *dev;
++	int result;
++
++	dev = attach_lrandom_to_lamebus(devunit, bus);
++	if (dev==NULL) {
++		return -1;
++	}
++	kprintf("lrandom%d at lamebus%d", devunit, busunit);
++	result = config_lrandom(dev, devunit);
++	if (result != 0) {
++		kprintf(": %s\n", strerror(result));
++		/* should really clean up dev */
++		return result;
++	}
++	kprintf("\n");
++	nextunit_lrandom = devunit+1;
++	autoconf_lrandom(dev, devunit);
++	return 0;
++}
++
++static
++int
++tryattach_lhd_to_lamebus(int devunit, struct lamebus_softc *bus, int busunit)
++{
++	struct lhd_softc *dev;
++	int result;
++
++	dev = attach_lhd_to_lamebus(devunit, bus);
++	if (dev==NULL) {
++		return -1;
++	}
++	kprintf("lhd%d at lamebus%d", devunit, busunit);
++	result = config_lhd(dev, devunit);
++	if (result != 0) {
++		kprintf(": %s\n", strerror(result));
++		/* should really clean up dev */
++		return result;
++	}
++	kprintf("\n");
++	nextunit_lhd = devunit+1;
++	autoconf_lhd(dev, devunit);
++	return 0;
++}
++
++static
++int
++tryattach_lser_to_lamebus(int devunit, struct lamebus_softc *bus, int busunit)
++{
++	struct lser_softc *dev;
++	int result;
++
++	dev = attach_lser_to_lamebus(devunit, bus);
++	if (dev==NULL) {
++		return -1;
++	}
++	kprintf("lser%d at lamebus%d", devunit, busunit);
++	result = config_lser(dev, devunit);
++	if (result != 0) {
++		kprintf(": %s\n", strerror(result));
++		/* should really clean up dev */
++		return result;
++	}
++	kprintf("\n");
++	nextunit_lser = devunit+1;
++	autoconf_lser(dev, devunit);
++	return 0;
++}
++
++static
++int
++tryattach_beep_to_ltimer(int devunit, struct ltimer_softc *bus, int busunit)
++{
++	struct beep_softc *dev;
++	int result;
++
++	dev = attach_beep_to_ltimer(devunit, bus);
++	if (dev==NULL) {
++		return -1;
++	}
++	kprintf("beep%d at ltimer%d", devunit, busunit);
++	result = config_beep(dev, devunit);
++	if (result != 0) {
++		kprintf(": %s\n", strerror(result));
++		/* should really clean up dev */
++		return result;
++	}
++	kprintf("\n");
++	nextunit_beep = devunit+1;
++	autoconf_beep(dev, devunit);
++	return 0;
++}
++
++static
++int
++tryattach_con_to_lser(int devunit, struct lser_softc *bus, int busunit)
++{
++	struct con_softc *dev;
++	int result;
++
++	dev = attach_con_to_lser(devunit, bus);
++	if (dev==NULL) {
++		return -1;
++	}
++	kprintf("con%d at lser%d", devunit, busunit);
++	result = config_con(dev, devunit);
++	if (result != 0) {
++		kprintf(": %s\n", strerror(result));
++		/* should really clean up dev */
++		return result;
++	}
++	kprintf("\n");
++	nextunit_con = devunit+1;
++	autoconf_con(dev, devunit);
++	return 0;
++}
++
++static
++int
++tryattach_rtclock_to_ltimer(int devunit, struct ltimer_softc *bus, int busunit)
++{
++	struct rtclock_softc *dev;
++	int result;
++
++	dev = attach_rtclock_to_ltimer(devunit, bus);
++	if (dev==NULL) {
++		return -1;
++	}
++	kprintf("rtclock%d at ltimer%d", devunit, busunit);
++	result = config_rtclock(dev, devunit);
++	if (result != 0) {
++		kprintf(": %s\n", strerror(result));
++		/* should really clean up dev */
++		return result;
++	}
++	kprintf("\n");
++	nextunit_rtclock = devunit+1;
++	autoconf_rtclock(dev, devunit);
++	return 0;
++}
++
++static
++int
++tryattach_random_to_lrandom(int devunit, struct lrandom_softc *bus, int busunit)
++{
++	struct random_softc *dev;
++	int result;
++
++	dev = attach_random_to_lrandom(devunit, bus);
++	if (dev==NULL) {
++		return -1;
++	}
++	kprintf("random%d at lrandom%d", devunit, busunit);
++	result = config_random(dev, devunit);
++	if (result != 0) {
++		kprintf(": %s\n", strerror(result));
++		/* should really clean up dev */
++		return result;
++	}
++	kprintf("\n");
++	nextunit_random = devunit+1;
++	autoconf_random(dev, devunit);
++	return 0;
++}
++
++
++static
++void
++autoconf_rtclock(struct rtclock_softc *bus, int busunit)
++{
++	(void)bus; (void)busunit;
++}
++
++static
++void
++autoconf_lrandom(struct lrandom_softc *bus, int busunit)
++{
++	(void)bus; (void)busunit;
++	{
++		if (nextunit_random <= 0) {
++			tryattach_random_to_lrandom(0, bus, busunit);
++		}
++	}
++}
++
++void
++autoconf_lamebus(struct lamebus_softc *bus, int busunit)
++{
++	(void)bus; (void)busunit;
++	{
++		int result, devunit=nextunit_emu;
++		do {
++			result = tryattach_emu_to_lamebus(devunit, bus, busunit);
++			devunit++;
++		} while (result==0);
++	}
++	{
++		int result, devunit=nextunit_ltrace;
++		do {
++			result = tryattach_ltrace_to_lamebus(devunit, bus, busunit);
++			devunit++;
++		} while (result==0);
++	}
++	{
++		int result, devunit=nextunit_ltimer;
++		do {
++			result = tryattach_ltimer_to_lamebus(devunit, bus, busunit);
++			devunit++;
++		} while (result==0);
++	}
++	{
++		int result, devunit=nextunit_lrandom;
++		do {
++			result = tryattach_lrandom_to_lamebus(devunit, bus, busunit);
++			devunit++;
++		} while (result==0);
++	}
++	{
++		int result, devunit=nextunit_lhd;
++		do {
++			result = tryattach_lhd_to_lamebus(devunit, bus, busunit);
++			devunit++;
++		} while (result==0);
++	}
++	{
++		int result, devunit=nextunit_lser;
++		do {
++			result = tryattach_lser_to_lamebus(devunit, bus, busunit);
++			devunit++;
++		} while (result==0);
++	}
++}
++
++static
++void
++autoconf_lser(struct lser_softc *bus, int busunit)
++{
++	(void)bus; (void)busunit;
++	{
++		if (nextunit_con <= 0) {
++			tryattach_con_to_lser(0, bus, busunit);
++		}
++	}
++}
++
++static
++void
++autoconf_beep(struct beep_softc *bus, int busunit)
++{
++	(void)bus; (void)busunit;
++}
++
++static
++void
++autoconf_con(struct con_softc *bus, int busunit)
++{
++	(void)bus; (void)busunit;
++}
++
++static
++void
++autoconf_ltimer(struct ltimer_softc *bus, int busunit)
++{
++	(void)bus; (void)busunit;
++	{
++		if (nextunit_beep <= 0) {
++			tryattach_beep_to_ltimer(0, bus, busunit);
++		}
++	}
++	{
++		if (nextunit_rtclock <= 0) {
++			tryattach_rtclock_to_ltimer(0, bus, busunit);
++		}
++	}
++}
++
++static
++void
++autoconf_emu(struct emu_softc *bus, int busunit)
++{
++	(void)bus; (void)busunit;
++}
++
++static
++void
++autoconf_random(struct random_softc *bus, int busunit)
++{
++	(void)bus; (void)busunit;
++}
++
++static
++void
++autoconf_lhd(struct lhd_softc *bus, int busunit)
++{
++	(void)bus; (void)busunit;
++}
++
++static
++void
++autoconf_ltrace(struct ltrace_softc *bus, int busunit)
++{
++	(void)bus; (void)busunit;
++}
++
++void
++pseudoconfig(void)
++{
++}
++
+diff --git a/kern/compile/ASST1/autoconf.h b/kern/compile/ASST1/autoconf.h
+new file mode 100644
+index 0000000..2c48736
+--- /dev/null
++++ b/kern/compile/ASST1/autoconf.h
+@@ -0,0 +1,43 @@
++/* Automatically generated; do not edit */
++#ifndef _AUTOCONF_H_
++#define _AUTOCONF_H_
++
++struct lamebus_softc;
++struct emu_softc;
++struct ltrace_softc;
++struct ltimer_softc;
++struct lrandom_softc;
++struct lhd_softc;
++struct lser_softc;
++struct beep_softc;
++struct con_softc;
++struct rtclock_softc;
++struct random_softc;
++
++void autoconf_lamebus(struct lamebus_softc *dev, int unit);
++
++struct emu_softc *attach_emu_to_lamebus(int devunit, struct lamebus_softc *bus);
++struct ltrace_softc *attach_ltrace_to_lamebus(int devunit, struct lamebus_softc *bus);
++struct ltimer_softc *attach_ltimer_to_lamebus(int devunit, struct lamebus_softc *bus);
++struct lrandom_softc *attach_lrandom_to_lamebus(int devunit, struct lamebus_softc *bus);
++struct lhd_softc *attach_lhd_to_lamebus(int devunit, struct lamebus_softc *bus);
++struct lser_softc *attach_lser_to_lamebus(int devunit, struct lamebus_softc *bus);
++struct beep_softc *attach_beep_to_ltimer(int devunit, struct ltimer_softc *bus);
++struct con_softc *attach_con_to_lser(int devunit, struct lser_softc *bus);
++struct rtclock_softc *attach_rtclock_to_ltimer(int devunit, struct ltimer_softc *bus);
++struct random_softc *attach_random_to_lrandom(int devunit, struct lrandom_softc *bus);
++
++int config_emu(struct emu_softc *dev, int unit);
++int config_ltrace(struct ltrace_softc *dev, int unit);
++int config_ltimer(struct ltimer_softc *dev, int unit);
++int config_lrandom(struct lrandom_softc *dev, int unit);
++int config_lhd(struct lhd_softc *dev, int unit);
++int config_lser(struct lser_softc *dev, int unit);
++int config_beep(struct beep_softc *dev, int unit);
++int config_con(struct con_softc *dev, int unit);
++int config_rtclock(struct rtclock_softc *dev, int unit);
++int config_random(struct random_softc *dev, int unit);
++
++void pseudoconfig(void);
++
++#endif /* _AUTOCONF_H_ */
+diff --git a/kern/compile/ASST1/autoconf.o b/kern/compile/ASST1/autoconf.o
+new file mode 100644
+index 0000000..92a32da
+Binary files /dev/null and b/kern/compile/ASST1/autoconf.o differ
+diff --git a/kern/compile/ASST1/beep.o b/kern/compile/ASST1/beep.o
+new file mode 100644
+index 0000000..2c8d14b
+Binary files /dev/null and b/kern/compile/ASST1/beep.o differ
+diff --git a/kern/compile/ASST1/beep_ltimer.o b/kern/compile/ASST1/beep_ltimer.o
+new file mode 100644
+index 0000000..cec135d
+Binary files /dev/null and b/kern/compile/ASST1/beep_ltimer.o differ
+diff --git a/kern/compile/ASST1/bitmap.o b/kern/compile/ASST1/bitmap.o
+new file mode 100644
+index 0000000..bd05f86
+Binary files /dev/null and b/kern/compile/ASST1/bitmap.o differ
+diff --git a/kern/compile/ASST1/bitmaptest.o b/kern/compile/ASST1/bitmaptest.o
+new file mode 100644
+index 0000000..7900734
+Binary files /dev/null and b/kern/compile/ASST1/bitmaptest.o differ
+diff --git a/kern/compile/ASST1/bswap.o b/kern/compile/ASST1/bswap.o
+new file mode 100644
+index 0000000..ab22bad
+Binary files /dev/null and b/kern/compile/ASST1/bswap.o differ
+diff --git a/kern/compile/ASST1/buf.o b/kern/compile/ASST1/buf.o
+new file mode 100644
+index 0000000..d6f9224
+Binary files /dev/null and b/kern/compile/ASST1/buf.o differ
+diff --git a/kern/compile/ASST1/bzero.o b/kern/compile/ASST1/bzero.o
+new file mode 100644
+index 0000000..ec36d10
+Binary files /dev/null and b/kern/compile/ASST1/bzero.o differ
+diff --git a/kern/compile/ASST1/cache-mips161.o b/kern/compile/ASST1/cache-mips161.o
+new file mode 100644
+index 0000000..b2d445f
+Binary files /dev/null and b/kern/compile/ASST1/cache-mips161.o differ
+diff --git a/kern/compile/ASST1/clock.o b/kern/compile/ASST1/clock.o
+new file mode 100644
+index 0000000..50970f0
+Binary files /dev/null and b/kern/compile/ASST1/clock.o differ
+diff --git a/kern/compile/ASST1/cmpdi2.o b/kern/compile/ASST1/cmpdi2.o
+new file mode 100644
+index 0000000..c7c33ba
+Binary files /dev/null and b/kern/compile/ASST1/cmpdi2.o differ
+diff --git a/kern/compile/ASST1/common.o b/kern/compile/ASST1/common.o
+new file mode 100644
+index 0000000..27dca8c
+Binary files /dev/null and b/kern/compile/ASST1/common.o differ
+diff --git a/kern/compile/ASST1/con_lser.o b/kern/compile/ASST1/con_lser.o
+new file mode 100644
+index 0000000..4fdd3ab
+Binary files /dev/null and b/kern/compile/ASST1/con_lser.o differ
+diff --git a/kern/compile/ASST1/console.o b/kern/compile/ASST1/console.o
+new file mode 100644
+index 0000000..cc99c38
+Binary files /dev/null and b/kern/compile/ASST1/console.o differ
+diff --git a/kern/compile/ASST1/copyinout.o b/kern/compile/ASST1/copyinout.o
+new file mode 100644
+index 0000000..6b0b786
+Binary files /dev/null and b/kern/compile/ASST1/copyinout.o differ
+diff --git a/kern/compile/ASST1/cpu.o b/kern/compile/ASST1/cpu.o
+new file mode 100644
+index 0000000..6eb7064
+Binary files /dev/null and b/kern/compile/ASST1/cpu.o differ
+diff --git a/kern/compile/ASST1/device.o b/kern/compile/ASST1/device.o
+new file mode 100644
+index 0000000..821f728
+Binary files /dev/null and b/kern/compile/ASST1/device.o differ
+diff --git a/kern/compile/ASST1/devnull.o b/kern/compile/ASST1/devnull.o
+new file mode 100644
+index 0000000..097e3a7
+Binary files /dev/null and b/kern/compile/ASST1/devnull.o differ
+diff --git a/kern/compile/ASST1/divdi3.o b/kern/compile/ASST1/divdi3.o
+new file mode 100644
+index 0000000..1d6afe1
+Binary files /dev/null and b/kern/compile/ASST1/divdi3.o differ
+diff --git a/kern/compile/ASST1/dumbvm.o b/kern/compile/ASST1/dumbvm.o
+new file mode 100644
+index 0000000..f52a7ba
+Binary files /dev/null and b/kern/compile/ASST1/dumbvm.o differ
+diff --git a/kern/compile/ASST1/elves.o b/kern/compile/ASST1/elves.o
+new file mode 100644
+index 0000000..e852bc8
+Binary files /dev/null and b/kern/compile/ASST1/elves.o differ
+diff --git a/kern/compile/ASST1/emu.o b/kern/compile/ASST1/emu.o
+new file mode 100644
+index 0000000..600382c
+Binary files /dev/null and b/kern/compile/ASST1/emu.o differ
+diff --git a/kern/compile/ASST1/emu_att.o b/kern/compile/ASST1/emu_att.o
+new file mode 100644
+index 0000000..8c8249c
+Binary files /dev/null and b/kern/compile/ASST1/emu_att.o differ
+diff --git a/kern/compile/ASST1/exception-mips1.o b/kern/compile/ASST1/exception-mips1.o
+new file mode 100644
+index 0000000..6a737b7
+Binary files /dev/null and b/kern/compile/ASST1/exception-mips1.o differ
+diff --git a/kern/compile/ASST1/files.mk b/kern/compile/ASST1/files.mk
+new file mode 100644
+index 0000000..40fd3cf
+--- /dev/null
++++ b/kern/compile/ASST1/files.mk
+@@ -0,0 +1,125 @@
++# Automatically generated by config; do not edit
++SRCS+=$(TOP)/common/libc/printf/__printf.c
++SRCS+=$(TOP)/common/libc/printf/snprintf.c
++SRCS+=$(TOP)/common/libc/stdlib/atoi.c
++SRCS+=$(TOP)/common/libc/string/bzero.c
++SRCS+=$(TOP)/common/libc/string/memcpy.c
++SRCS+=$(TOP)/common/libc/string/memmove.c
++SRCS+=$(TOP)/common/libc/string/memset.c
++SRCS+=$(TOP)/common/libc/string/strcat.c
++SRCS+=$(TOP)/common/libc/string/strchr.c
++SRCS+=$(TOP)/common/libc/string/strcmp.c
++SRCS+=$(TOP)/common/libc/string/strcpy.c
++SRCS+=$(TOP)/common/libc/string/strlen.c
++SRCS+=$(TOP)/common/libc/string/strrchr.c
++SRCS+=$(TOP)/common/libc/string/strtok_r.c
++SRCS+=$(KTOP)/compile/ASST1/autoconf.c
++SRCS+=$(KTOP)/dev/generic/beep.c
++SRCS+=$(KTOP)/dev/generic/console.c
++SRCS+=$(KTOP)/dev/generic/random.c
++SRCS+=$(KTOP)/dev/generic/rtclock.c
++SRCS+=$(KTOP)/dev/lamebus/beep_ltimer.c
++SRCS+=$(KTOP)/dev/lamebus/con_lser.c
++SRCS+=$(KTOP)/dev/lamebus/emu_att.c
++SRCS+=$(KTOP)/dev/lamebus/emu.c
++SRCS+=$(KTOP)/dev/lamebus/lamebus.c
++SRCS+=$(KTOP)/dev/lamebus/lhd_att.c
++SRCS+=$(KTOP)/dev/lamebus/lhd.c
++SRCS+=$(KTOP)/dev/lamebus/lrandom_att.c
++SRCS+=$(KTOP)/dev/lamebus/lrandom.c
++SRCS+=$(KTOP)/dev/lamebus/lser_att.c
++SRCS+=$(KTOP)/dev/lamebus/lser.c
++SRCS+=$(KTOP)/dev/lamebus/ltimer_att.c
++SRCS+=$(KTOP)/dev/lamebus/ltimer.c
++SRCS+=$(KTOP)/dev/lamebus/ltrace_att.c
++SRCS+=$(KTOP)/dev/lamebus/ltrace.c
++SRCS+=$(KTOP)/dev/lamebus/random_lrandom.c
++SRCS+=$(KTOP)/dev/lamebus/rtclock_ltimer.c
++SRCS+=$(KTOP)/fs/semfs/semfs_fsops.c
++SRCS+=$(KTOP)/fs/semfs/semfs_obj.c
++SRCS+=$(KTOP)/fs/semfs/semfs_vnops.c
++SRCS+=$(KTOP)/fs/sfs/sfs_balloc.c
++SRCS+=$(KTOP)/fs/sfs/sfs_bmap.c
++SRCS+=$(KTOP)/fs/sfs/sfs_dir.c
++SRCS+=$(KTOP)/fs/sfs/sfs_fsops.c
++SRCS+=$(KTOP)/fs/sfs/sfs_inode.c
++SRCS+=$(KTOP)/fs/sfs/sfs_io.c
++SRCS+=$(KTOP)/fs/sfs/sfs_jphys.c
++SRCS+=$(KTOP)/fs/sfs/sfs_vnops.c
++SRCS+=$(KTOP)/lib/array.c
++SRCS+=$(KTOP)/lib/bitmap.c
++SRCS+=$(KTOP)/lib/bswap.c
++SRCS+=$(KTOP)/lib/kgets.c
++SRCS+=$(KTOP)/lib/kprintf.c
++SRCS+=$(KTOP)/lib/misc.c
++SRCS+=$(KTOP)/lib/time.c
++SRCS+=$(KTOP)/lib/uio.c
++SRCS+=$(KTOP)/main/main.c
++SRCS+=$(KTOP)/main/menu.c
++SRCS.MACHINE.mips+=$(KTOP)/arch/mips/locore/trap.c
++SRCS.MACHINE.mips+=$(KTOP)/arch/mips/syscall/syscall.c
++SRCS.MACHINE.mips+=$(KTOP)/arch/mips/thread/cpu.c
++SRCS.MACHINE.mips+=$(KTOP)/arch/mips/thread/switchframe.c
++SRCS.MACHINE.mips+=$(KTOP)/arch/mips/thread/switch.S
++SRCS.MACHINE.mips+=$(KTOP)/arch/mips/thread/thread_machdep.c
++SRCS.MACHINE.mips+=$(KTOP)/arch/mips/thread/threadstart.S
++SRCS.MACHINE.mips+=$(KTOP)/arch/mips/vm/dumbvm.c
++SRCS.MACHINE.mips+=$(KTOP)/arch/mips/vm/ram.c
++SRCS.MACHINE.mips+=$(TOP)/common/gcc-millicode/adddi3.c
++SRCS.MACHINE.mips+=$(TOP)/common/gcc-millicode/anddi3.c
++SRCS.MACHINE.mips+=$(TOP)/common/gcc-millicode/ashldi3.c
++SRCS.MACHINE.mips+=$(TOP)/common/gcc-millicode/ashrdi3.c
++SRCS.MACHINE.mips+=$(TOP)/common/gcc-millicode/cmpdi2.c
++SRCS.MACHINE.mips+=$(TOP)/common/gcc-millicode/divdi3.c
++SRCS.MACHINE.mips+=$(TOP)/common/gcc-millicode/iordi3.c
++SRCS.MACHINE.mips+=$(TOP)/common/gcc-millicode/lshldi3.c
++SRCS.MACHINE.mips+=$(TOP)/common/gcc-millicode/lshrdi3.c
++SRCS.MACHINE.mips+=$(TOP)/common/gcc-millicode/moddi3.c
++SRCS.MACHINE.mips+=$(TOP)/common/gcc-millicode/muldi3.c
++SRCS.MACHINE.mips+=$(TOP)/common/gcc-millicode/negdi2.c
++SRCS.MACHINE.mips+=$(TOP)/common/gcc-millicode/notdi2.c
++SRCS.MACHINE.mips+=$(TOP)/common/gcc-millicode/qdivrem.c
++SRCS.MACHINE.mips+=$(TOP)/common/gcc-millicode/subdi3.c
++SRCS.MACHINE.mips+=$(TOP)/common/gcc-millicode/ucmpdi2.c
++SRCS.MACHINE.mips+=$(TOP)/common/gcc-millicode/udivdi3.c
++SRCS.MACHINE.mips+=$(TOP)/common/gcc-millicode/umoddi3.c
++SRCS.MACHINE.mips+=$(TOP)/common/gcc-millicode/xordi3.c
++SRCS.MACHINE.mips+=$(TOP)/common/libc/arch/mips/setjmp.S
++SRCS.MACHINE.mips+=$(KTOP)/vm/copyinout.c
++SRCS+=$(KTOP)/proc/proc.c
++SRCS+=$(KTOP)/synchprobs/airballoon.c
++SRCS+=$(KTOP)/synchprobs/common.c
++SRCS+=$(KTOP)/synchprobs/elves.c
++SRCS.PLATFORM.sys161+=$(KTOP)/arch/mips/locore/cache-mips161.S
++SRCS.PLATFORM.sys161+=$(KTOP)/arch/mips/locore/exception-mips1.S
++SRCS.PLATFORM.sys161+=$(KTOP)/arch/mips/vm/tlb-mips161.S
++SRCS.PLATFORM.sys161+=$(KTOP)/arch/sys161/dev/lamebus_machdep.c
++SRCS.PLATFORM.sys161+=$(KTOP)/arch/sys161/main/start.S
++SRCS+=$(KTOP)/syscall/loadelf.c
++SRCS+=$(KTOP)/syscall/runprogram.c
++SRCS+=$(KTOP)/syscall/time_syscalls.c
++SRCS+=$(KTOP)/test/arraytest.c
++SRCS+=$(KTOP)/test/bitmaptest.c
++SRCS+=$(KTOP)/test/fstest.c
++SRCS+=$(KTOP)/test/kmalloctest.c
++SRCS+=$(KTOP)/test/semunit.c
++SRCS+=$(KTOP)/test/synchtest.c
++SRCS+=$(KTOP)/test/threadlisttest.c
++SRCS+=$(KTOP)/test/threadtest.c
++SRCS+=$(KTOP)/test/tt3.c
++SRCS+=$(KTOP)/thread/clock.c
++SRCS+=$(KTOP)/thread/spinlock.c
++SRCS+=$(KTOP)/thread/spl.c
++SRCS+=$(KTOP)/thread/synch.c
++SRCS+=$(KTOP)/thread/thread.c
++SRCS+=$(KTOP)/thread/threadlist.c
++SRCS+=$(KTOP)/vfs/buf.c
++SRCS+=$(KTOP)/vfs/device.c
++SRCS+=$(KTOP)/vfs/devnull.c
++SRCS+=$(KTOP)/vfs/vfscwd.c
++SRCS+=$(KTOP)/vfs/vfsfail.c
++SRCS+=$(KTOP)/vfs/vfslist.c
++SRCS+=$(KTOP)/vfs/vfslookup.c
++SRCS+=$(KTOP)/vfs/vfspath.c
++SRCS+=$(KTOP)/vfs/vnode.c
++SRCS+=$(KTOP)/vm/kmalloc.c
+diff --git a/kern/compile/ASST1/fstest.o b/kern/compile/ASST1/fstest.o
+new file mode 100644
+index 0000000..2679691
+Binary files /dev/null and b/kern/compile/ASST1/fstest.o differ
+diff --git a/kern/compile/ASST1/includelinks/kern/machine b/kern/compile/ASST1/includelinks/kern/machine
+new file mode 120000
+index 0000000..af28acb
+--- /dev/null
++++ b/kern/compile/ASST1/includelinks/kern/machine
+@@ -0,0 +1 @@
++mips
+\ No newline at end of file
+diff --git a/kern/compile/ASST1/includelinks/kern/mips b/kern/compile/ASST1/includelinks/kern/mips
+new file mode 120000
+index 0000000..f26786d
+--- /dev/null
++++ b/kern/compile/ASST1/includelinks/kern/mips
+@@ -0,0 +1 @@
++../../../../arch/mips/include/kern
+\ No newline at end of file
+diff --git a/kern/compile/ASST1/includelinks/machine b/kern/compile/ASST1/includelinks/machine
+new file mode 120000
+index 0000000..af28acb
+--- /dev/null
++++ b/kern/compile/ASST1/includelinks/machine
+@@ -0,0 +1 @@
++mips
+\ No newline at end of file
+diff --git a/kern/compile/ASST1/includelinks/mips b/kern/compile/ASST1/includelinks/mips
+new file mode 120000
+index 0000000..8d2096d
+--- /dev/null
++++ b/kern/compile/ASST1/includelinks/mips
+@@ -0,0 +1 @@
++../../../arch/mips/include
+\ No newline at end of file
+diff --git a/kern/compile/ASST1/includelinks/platform b/kern/compile/ASST1/includelinks/platform
+new file mode 120000
+index 0000000..6aa3aca
+--- /dev/null
++++ b/kern/compile/ASST1/includelinks/platform
+@@ -0,0 +1 @@
++sys161
+\ No newline at end of file
+diff --git a/kern/compile/ASST1/includelinks/sys161 b/kern/compile/ASST1/includelinks/sys161
+new file mode 120000
+index 0000000..620e8fe
+--- /dev/null
++++ b/kern/compile/ASST1/includelinks/sys161
+@@ -0,0 +1 @@
++../../../arch/sys161/include
+\ No newline at end of file
+diff --git a/kern/compile/ASST1/iordi3.o b/kern/compile/ASST1/iordi3.o
+new file mode 100644
+index 0000000..168fec4
+Binary files /dev/null and b/kern/compile/ASST1/iordi3.o differ
+diff --git a/kern/compile/ASST1/kernel b/kern/compile/ASST1/kernel
+new file mode 100755
+index 0000000..d60058a
+Binary files /dev/null and b/kern/compile/ASST1/kernel differ
+diff --git a/kern/compile/ASST1/kgets.o b/kern/compile/ASST1/kgets.o
+new file mode 100644
+index 0000000..cf14508
+Binary files /dev/null and b/kern/compile/ASST1/kgets.o differ
+diff --git a/kern/compile/ASST1/kmalloc.o b/kern/compile/ASST1/kmalloc.o
+new file mode 100644
+index 0000000..c521482
+Binary files /dev/null and b/kern/compile/ASST1/kmalloc.o differ
+diff --git a/kern/compile/ASST1/kmalloctest.o b/kern/compile/ASST1/kmalloctest.o
+new file mode 100644
+index 0000000..1c08da2
+Binary files /dev/null and b/kern/compile/ASST1/kmalloctest.o differ
+diff --git a/kern/compile/ASST1/kprintf.o b/kern/compile/ASST1/kprintf.o
+new file mode 100644
+index 0000000..a853a72
+Binary files /dev/null and b/kern/compile/ASST1/kprintf.o differ
+diff --git a/kern/compile/ASST1/lamebus.o b/kern/compile/ASST1/lamebus.o
+new file mode 100644
+index 0000000..b39eeb3
+Binary files /dev/null and b/kern/compile/ASST1/lamebus.o differ
+diff --git a/kern/compile/ASST1/lamebus_machdep.o b/kern/compile/ASST1/lamebus_machdep.o
+new file mode 100644
+index 0000000..e5caa70
+Binary files /dev/null and b/kern/compile/ASST1/lamebus_machdep.o differ
+diff --git a/kern/compile/ASST1/lhd.o b/kern/compile/ASST1/lhd.o
+new file mode 100644
+index 0000000..361c1f2
+Binary files /dev/null and b/kern/compile/ASST1/lhd.o differ
+diff --git a/kern/compile/ASST1/lhd_att.o b/kern/compile/ASST1/lhd_att.o
+new file mode 100644
+index 0000000..a22c95c
+Binary files /dev/null and b/kern/compile/ASST1/lhd_att.o differ
+diff --git a/kern/compile/ASST1/loadelf.o b/kern/compile/ASST1/loadelf.o
+new file mode 100644
+index 0000000..d273cf7
+Binary files /dev/null and b/kern/compile/ASST1/loadelf.o differ
+diff --git a/kern/compile/ASST1/lrandom.o b/kern/compile/ASST1/lrandom.o
+new file mode 100644
+index 0000000..658462f
+Binary files /dev/null and b/kern/compile/ASST1/lrandom.o differ
+diff --git a/kern/compile/ASST1/lrandom_att.o b/kern/compile/ASST1/lrandom_att.o
+new file mode 100644
+index 0000000..441fd22
+Binary files /dev/null and b/kern/compile/ASST1/lrandom_att.o differ
+diff --git a/kern/compile/ASST1/lser.o b/kern/compile/ASST1/lser.o
+new file mode 100644
+index 0000000..0463931
+Binary files /dev/null and b/kern/compile/ASST1/lser.o differ
+diff --git a/kern/compile/ASST1/lser_att.o b/kern/compile/ASST1/lser_att.o
+new file mode 100644
+index 0000000..2fca010
+Binary files /dev/null and b/kern/compile/ASST1/lser_att.o differ
+diff --git a/kern/compile/ASST1/lshldi3.o b/kern/compile/ASST1/lshldi3.o
+new file mode 100644
+index 0000000..0aea6cf
+Binary files /dev/null and b/kern/compile/ASST1/lshldi3.o differ
+diff --git a/kern/compile/ASST1/lshrdi3.o b/kern/compile/ASST1/lshrdi3.o
+new file mode 100644
+index 0000000..b06fc86
+Binary files /dev/null and b/kern/compile/ASST1/lshrdi3.o differ
+diff --git a/kern/compile/ASST1/ltimer.o b/kern/compile/ASST1/ltimer.o
+new file mode 100644
+index 0000000..d24777e
+Binary files /dev/null and b/kern/compile/ASST1/ltimer.o differ
+diff --git a/kern/compile/ASST1/ltimer_att.o b/kern/compile/ASST1/ltimer_att.o
+new file mode 100644
+index 0000000..5ca1fac
+Binary files /dev/null and b/kern/compile/ASST1/ltimer_att.o differ
+diff --git a/kern/compile/ASST1/ltrace.o b/kern/compile/ASST1/ltrace.o
+new file mode 100644
+index 0000000..4d4f996
+Binary files /dev/null and b/kern/compile/ASST1/ltrace.o differ
+diff --git a/kern/compile/ASST1/ltrace_att.o b/kern/compile/ASST1/ltrace_att.o
+new file mode 100644
+index 0000000..fee0348
+Binary files /dev/null and b/kern/compile/ASST1/ltrace_att.o differ
+diff --git a/kern/compile/ASST1/main.o b/kern/compile/ASST1/main.o
+new file mode 100644
+index 0000000..dbda113
+Binary files /dev/null and b/kern/compile/ASST1/main.o differ
+diff --git a/kern/compile/ASST1/memcpy.o b/kern/compile/ASST1/memcpy.o
+new file mode 100644
+index 0000000..efb8317
+Binary files /dev/null and b/kern/compile/ASST1/memcpy.o differ
+diff --git a/kern/compile/ASST1/memmove.o b/kern/compile/ASST1/memmove.o
+new file mode 100644
+index 0000000..37f085e
+Binary files /dev/null and b/kern/compile/ASST1/memmove.o differ
+diff --git a/kern/compile/ASST1/memset.o b/kern/compile/ASST1/memset.o
+new file mode 100644
+index 0000000..8be442f
+Binary files /dev/null and b/kern/compile/ASST1/memset.o differ
+diff --git a/kern/compile/ASST1/menu.o b/kern/compile/ASST1/menu.o
+new file mode 100644
+index 0000000..adb3ae5
+Binary files /dev/null and b/kern/compile/ASST1/menu.o differ
+diff --git a/kern/compile/ASST1/misc.o b/kern/compile/ASST1/misc.o
+new file mode 100644
+index 0000000..ed38855
+Binary files /dev/null and b/kern/compile/ASST1/misc.o differ
+diff --git a/kern/compile/ASST1/moddi3.o b/kern/compile/ASST1/moddi3.o
+new file mode 100644
+index 0000000..3a2ef80
+Binary files /dev/null and b/kern/compile/ASST1/moddi3.o differ
+diff --git a/kern/compile/ASST1/muldi3.o b/kern/compile/ASST1/muldi3.o
+new file mode 100644
+index 0000000..6b15376
+Binary files /dev/null and b/kern/compile/ASST1/muldi3.o differ
+diff --git a/kern/compile/ASST1/negdi2.o b/kern/compile/ASST1/negdi2.o
+new file mode 100644
+index 0000000..733eaed
+Binary files /dev/null and b/kern/compile/ASST1/negdi2.o differ
+diff --git a/kern/compile/ASST1/notdi2.o b/kern/compile/ASST1/notdi2.o
+new file mode 100644
+index 0000000..6915e03
+Binary files /dev/null and b/kern/compile/ASST1/notdi2.o differ
+diff --git a/kern/compile/ASST1/opt-dumbvm.h b/kern/compile/ASST1/opt-dumbvm.h
+new file mode 100644
+index 0000000..7db9b01
+--- /dev/null
++++ b/kern/compile/ASST1/opt-dumbvm.h
+@@ -0,0 +1,5 @@
++/* Automatically generated; do not edit */
++#ifndef _OPT_DUMBVM_H_
++#define _OPT_DUMBVM_H_
++#define OPT_DUMBVM 1
++#endif /* _OPT_DUMBVM_H_ */
+diff --git a/kern/compile/ASST1/opt-net.h b/kern/compile/ASST1/opt-net.h
+new file mode 100644
+index 0000000..0340a83
+--- /dev/null
++++ b/kern/compile/ASST1/opt-net.h
+@@ -0,0 +1,5 @@
++/* Automatically generated; do not edit */
++#ifndef _OPT_NET_H_
++#define _OPT_NET_H_
++#define OPT_NET 0
++#endif /* _OPT_NET_H_ */
+diff --git a/kern/compile/ASST1/opt-netfs.h b/kern/compile/ASST1/opt-netfs.h
+new file mode 100644
+index 0000000..cd21c56
+--- /dev/null
++++ b/kern/compile/ASST1/opt-netfs.h
+@@ -0,0 +1,5 @@
++/* Automatically generated; do not edit */
++#ifndef _OPT_NETFS_H_
++#define _OPT_NETFS_H_
++#define OPT_NETFS 0
++#endif /* _OPT_NETFS_H_ */
+diff --git a/kern/compile/ASST1/opt-noasserts.h b/kern/compile/ASST1/opt-noasserts.h
+new file mode 100644
+index 0000000..e4cd61c
+--- /dev/null
++++ b/kern/compile/ASST1/opt-noasserts.h
+@@ -0,0 +1,5 @@
++/* Automatically generated; do not edit */
++#ifndef _OPT_NOASSERTS_H_
++#define _OPT_NOASSERTS_H_
++#define OPT_NOASSERTS 0
++#endif /* _OPT_NOASSERTS_H_ */
+diff --git a/kern/compile/ASST1/opt-semfs.h b/kern/compile/ASST1/opt-semfs.h
+new file mode 100644
+index 0000000..8b7a4f4
+--- /dev/null
++++ b/kern/compile/ASST1/opt-semfs.h
+@@ -0,0 +1,5 @@
++/* Automatically generated; do not edit */
++#ifndef _OPT_SEMFS_H_
++#define _OPT_SEMFS_H_
++#define OPT_SEMFS 1
++#endif /* _OPT_SEMFS_H_ */
+diff --git a/kern/compile/ASST1/opt-sfs.h b/kern/compile/ASST1/opt-sfs.h
+new file mode 100644
+index 0000000..94095ad
+--- /dev/null
++++ b/kern/compile/ASST1/opt-sfs.h
+@@ -0,0 +1,5 @@
++/* Automatically generated; do not edit */
++#ifndef _OPT_SFS_H_
++#define _OPT_SFS_H_
++#define OPT_SFS 1
++#endif /* _OPT_SFS_H_ */
+diff --git a/kern/compile/ASST1/opt-synchprobs.h b/kern/compile/ASST1/opt-synchprobs.h
+new file mode 100644
+index 0000000..57b9186
+--- /dev/null
++++ b/kern/compile/ASST1/opt-synchprobs.h
+@@ -0,0 +1,5 @@
++/* Automatically generated; do not edit */
++#ifndef _OPT_SYNCHPROBS_H_
++#define _OPT_SYNCHPROBS_H_
++#define OPT_SYNCHPROBS 1
++#endif /* _OPT_SYNCHPROBS_H_ */
+diff --git a/kern/compile/ASST1/proc.o b/kern/compile/ASST1/proc.o
+new file mode 100644
+index 0000000..37f6f19
+Binary files /dev/null and b/kern/compile/ASST1/proc.o differ
+diff --git a/kern/compile/ASST1/qdivrem.o b/kern/compile/ASST1/qdivrem.o
+new file mode 100644
+index 0000000..faadea0
+Binary files /dev/null and b/kern/compile/ASST1/qdivrem.o differ
+diff --git a/kern/compile/ASST1/ram.o b/kern/compile/ASST1/ram.o
+new file mode 100644
+index 0000000..ce96145
+Binary files /dev/null and b/kern/compile/ASST1/ram.o differ
+diff --git a/kern/compile/ASST1/random.o b/kern/compile/ASST1/random.o
+new file mode 100644
+index 0000000..2bcc293
+Binary files /dev/null and b/kern/compile/ASST1/random.o differ
+diff --git a/kern/compile/ASST1/random_lrandom.o b/kern/compile/ASST1/random_lrandom.o
+new file mode 100644
+index 0000000..a4fd66a
+Binary files /dev/null and b/kern/compile/ASST1/random_lrandom.o differ
+diff --git a/kern/compile/ASST1/rtclock.o b/kern/compile/ASST1/rtclock.o
+new file mode 100644
+index 0000000..ae2d5fe
+Binary files /dev/null and b/kern/compile/ASST1/rtclock.o differ
+diff --git a/kern/compile/ASST1/rtclock_ltimer.o b/kern/compile/ASST1/rtclock_ltimer.o
+new file mode 100644
+index 0000000..8985e3b
+Binary files /dev/null and b/kern/compile/ASST1/rtclock_ltimer.o differ
+diff --git a/kern/compile/ASST1/runprogram.o b/kern/compile/ASST1/runprogram.o
+new file mode 100644
+index 0000000..2478cfc
+Binary files /dev/null and b/kern/compile/ASST1/runprogram.o differ
+diff --git a/kern/compile/ASST1/semfs_fsops.o b/kern/compile/ASST1/semfs_fsops.o
+new file mode 100644
+index 0000000..0aa9af4
+Binary files /dev/null and b/kern/compile/ASST1/semfs_fsops.o differ
+diff --git a/kern/compile/ASST1/semfs_obj.o b/kern/compile/ASST1/semfs_obj.o
+new file mode 100644
+index 0000000..4d60e2b
+Binary files /dev/null and b/kern/compile/ASST1/semfs_obj.o differ
+diff --git a/kern/compile/ASST1/semfs_vnops.o b/kern/compile/ASST1/semfs_vnops.o
+new file mode 100644
+index 0000000..647664c
+Binary files /dev/null and b/kern/compile/ASST1/semfs_vnops.o differ
+diff --git a/kern/compile/ASST1/semunit.o b/kern/compile/ASST1/semunit.o
+new file mode 100644
+index 0000000..2b190b9
+Binary files /dev/null and b/kern/compile/ASST1/semunit.o differ
+diff --git a/kern/compile/ASST1/setjmp.o b/kern/compile/ASST1/setjmp.o
+new file mode 100644
+index 0000000..bead26d
+Binary files /dev/null and b/kern/compile/ASST1/setjmp.o differ
+diff --git a/kern/compile/ASST1/sfs_balloc.o b/kern/compile/ASST1/sfs_balloc.o
+new file mode 100644
+index 0000000..e335a8d
+Binary files /dev/null and b/kern/compile/ASST1/sfs_balloc.o differ
+diff --git a/kern/compile/ASST1/sfs_bmap.o b/kern/compile/ASST1/sfs_bmap.o
+new file mode 100644
+index 0000000..c9e6f1e
+Binary files /dev/null and b/kern/compile/ASST1/sfs_bmap.o differ
+diff --git a/kern/compile/ASST1/sfs_dir.o b/kern/compile/ASST1/sfs_dir.o
+new file mode 100644
+index 0000000..40f725b
+Binary files /dev/null and b/kern/compile/ASST1/sfs_dir.o differ
+diff --git a/kern/compile/ASST1/sfs_fsops.o b/kern/compile/ASST1/sfs_fsops.o
+new file mode 100644
+index 0000000..ae86a88
+Binary files /dev/null and b/kern/compile/ASST1/sfs_fsops.o differ
+diff --git a/kern/compile/ASST1/sfs_inode.o b/kern/compile/ASST1/sfs_inode.o
+new file mode 100644
+index 0000000..6aa1601
+Binary files /dev/null and b/kern/compile/ASST1/sfs_inode.o differ
+diff --git a/kern/compile/ASST1/sfs_io.o b/kern/compile/ASST1/sfs_io.o
+new file mode 100644
+index 0000000..6c01bd2
+Binary files /dev/null and b/kern/compile/ASST1/sfs_io.o differ
+diff --git a/kern/compile/ASST1/sfs_jphys.o b/kern/compile/ASST1/sfs_jphys.o
+new file mode 100644
+index 0000000..7ae48f7
+Binary files /dev/null and b/kern/compile/ASST1/sfs_jphys.o differ
+diff --git a/kern/compile/ASST1/sfs_vnops.o b/kern/compile/ASST1/sfs_vnops.o
+new file mode 100644
+index 0000000..a6eb52d
+Binary files /dev/null and b/kern/compile/ASST1/sfs_vnops.o differ
+diff --git a/kern/compile/ASST1/snprintf.o b/kern/compile/ASST1/snprintf.o
+new file mode 100644
+index 0000000..ec830c7
+Binary files /dev/null and b/kern/compile/ASST1/snprintf.o differ
+diff --git a/kern/compile/ASST1/spinlock.o b/kern/compile/ASST1/spinlock.o
+new file mode 100644
+index 0000000..40fd730
+Binary files /dev/null and b/kern/compile/ASST1/spinlock.o differ
+diff --git a/kern/compile/ASST1/spl.o b/kern/compile/ASST1/spl.o
+new file mode 100644
+index 0000000..2c4a67e
+Binary files /dev/null and b/kern/compile/ASST1/spl.o differ
+diff --git a/kern/compile/ASST1/start.o b/kern/compile/ASST1/start.o
+new file mode 100644
+index 0000000..a99bb42
+Binary files /dev/null and b/kern/compile/ASST1/start.o differ
+diff --git a/kern/compile/ASST1/strcat.o b/kern/compile/ASST1/strcat.o
+new file mode 100644
+index 0000000..65c8bdd
+Binary files /dev/null and b/kern/compile/ASST1/strcat.o differ
+diff --git a/kern/compile/ASST1/strchr.o b/kern/compile/ASST1/strchr.o
+new file mode 100644
+index 0000000..30e9e30
+Binary files /dev/null and b/kern/compile/ASST1/strchr.o differ
+diff --git a/kern/compile/ASST1/strcmp.o b/kern/compile/ASST1/strcmp.o
+new file mode 100644
+index 0000000..6d559ab
+Binary files /dev/null and b/kern/compile/ASST1/strcmp.o differ
+diff --git a/kern/compile/ASST1/strcpy.o b/kern/compile/ASST1/strcpy.o
+new file mode 100644
+index 0000000..8991d7d
+Binary files /dev/null and b/kern/compile/ASST1/strcpy.o differ
+diff --git a/kern/compile/ASST1/strlen.o b/kern/compile/ASST1/strlen.o
+new file mode 100644
+index 0000000..e07cb47
+Binary files /dev/null and b/kern/compile/ASST1/strlen.o differ
+diff --git a/kern/compile/ASST1/strrchr.o b/kern/compile/ASST1/strrchr.o
+new file mode 100644
+index 0000000..cd71e74
+Binary files /dev/null and b/kern/compile/ASST1/strrchr.o differ
+diff --git a/kern/compile/ASST1/strtok_r.o b/kern/compile/ASST1/strtok_r.o
+new file mode 100644
+index 0000000..8690015
+Binary files /dev/null and b/kern/compile/ASST1/strtok_r.o differ
+diff --git a/kern/compile/ASST1/subdi3.o b/kern/compile/ASST1/subdi3.o
+new file mode 100644
+index 0000000..e735b19
+Binary files /dev/null and b/kern/compile/ASST1/subdi3.o differ
+diff --git a/kern/compile/ASST1/switch.o b/kern/compile/ASST1/switch.o
+new file mode 100644
+index 0000000..1ddc4fb
+Binary files /dev/null and b/kern/compile/ASST1/switch.o differ
+diff --git a/kern/compile/ASST1/switchframe.o b/kern/compile/ASST1/switchframe.o
+new file mode 100644
+index 0000000..55b4ab4
+Binary files /dev/null and b/kern/compile/ASST1/switchframe.o differ
+diff --git a/kern/compile/ASST1/synch.o b/kern/compile/ASST1/synch.o
+new file mode 100644
+index 0000000..179471b
+Binary files /dev/null and b/kern/compile/ASST1/synch.o differ
+diff --git a/kern/compile/ASST1/synchtest.o b/kern/compile/ASST1/synchtest.o
+new file mode 100644
+index 0000000..3d95a1a
+Binary files /dev/null and b/kern/compile/ASST1/synchtest.o differ
+diff --git a/kern/compile/ASST1/syscall.o b/kern/compile/ASST1/syscall.o
+new file mode 100644
+index 0000000..7a27cf0
+Binary files /dev/null and b/kern/compile/ASST1/syscall.o differ
+diff --git a/kern/compile/ASST1/thread.o b/kern/compile/ASST1/thread.o
+new file mode 100644
+index 0000000..c678267
+Binary files /dev/null and b/kern/compile/ASST1/thread.o differ
+diff --git a/kern/compile/ASST1/thread_machdep.o b/kern/compile/ASST1/thread_machdep.o
+new file mode 100644
+index 0000000..edbfd9c
+Binary files /dev/null and b/kern/compile/ASST1/thread_machdep.o differ
+diff --git a/kern/compile/ASST1/threadlist.o b/kern/compile/ASST1/threadlist.o
+new file mode 100644
+index 0000000..da6c495
+Binary files /dev/null and b/kern/compile/ASST1/threadlist.o differ
+diff --git a/kern/compile/ASST1/threadlisttest.o b/kern/compile/ASST1/threadlisttest.o
+new file mode 100644
+index 0000000..987eaa9
+Binary files /dev/null and b/kern/compile/ASST1/threadlisttest.o differ
+diff --git a/kern/compile/ASST1/threadstart.o b/kern/compile/ASST1/threadstart.o
+new file mode 100644
+index 0000000..8c2647e
+Binary files /dev/null and b/kern/compile/ASST1/threadstart.o differ
+diff --git a/kern/compile/ASST1/threadtest.o b/kern/compile/ASST1/threadtest.o
+new file mode 100644
+index 0000000..f3ed92f
+Binary files /dev/null and b/kern/compile/ASST1/threadtest.o differ
+diff --git a/kern/compile/ASST1/time.o b/kern/compile/ASST1/time.o
+new file mode 100644
+index 0000000..08fec86
+Binary files /dev/null and b/kern/compile/ASST1/time.o differ
+diff --git a/kern/compile/ASST1/time_syscalls.o b/kern/compile/ASST1/time_syscalls.o
+new file mode 100644
+index 0000000..3a41c1b
+Binary files /dev/null and b/kern/compile/ASST1/time_syscalls.o differ
+diff --git a/kern/compile/ASST1/tlb-mips161.o b/kern/compile/ASST1/tlb-mips161.o
+new file mode 100644
+index 0000000..aee025c
+Binary files /dev/null and b/kern/compile/ASST1/tlb-mips161.o differ
+diff --git a/kern/compile/ASST1/trap.o b/kern/compile/ASST1/trap.o
+new file mode 100644
+index 0000000..87ef963
+Binary files /dev/null and b/kern/compile/ASST1/trap.o differ
+diff --git a/kern/compile/ASST1/tt3.o b/kern/compile/ASST1/tt3.o
+new file mode 100644
+index 0000000..90be7e8
+Binary files /dev/null and b/kern/compile/ASST1/tt3.o differ
+diff --git a/kern/compile/ASST1/ucmpdi2.o b/kern/compile/ASST1/ucmpdi2.o
+new file mode 100644
+index 0000000..f6cb4f9
+Binary files /dev/null and b/kern/compile/ASST1/ucmpdi2.o differ
+diff --git a/kern/compile/ASST1/udivdi3.o b/kern/compile/ASST1/udivdi3.o
+new file mode 100644
+index 0000000..82bb55e
+Binary files /dev/null and b/kern/compile/ASST1/udivdi3.o differ
+diff --git a/kern/compile/ASST1/uio.o b/kern/compile/ASST1/uio.o
+new file mode 100644
+index 0000000..8ce2505
+Binary files /dev/null and b/kern/compile/ASST1/uio.o differ
+diff --git a/kern/compile/ASST1/umoddi3.o b/kern/compile/ASST1/umoddi3.o
+new file mode 100644
+index 0000000..0a4e5fb
+Binary files /dev/null and b/kern/compile/ASST1/umoddi3.o differ
+diff --git a/kern/compile/ASST1/vers.c b/kern/compile/ASST1/vers.c
+new file mode 100644
+index 0000000..d9a1f93
+--- /dev/null
++++ b/kern/compile/ASST1/vers.c
+@@ -0,0 +1,3 @@
++/* This file is automatically generated. Edits will be lost.*/
++const int buildversion = 65;
++const char buildconfig[] = "ASST1";
+diff --git a/kern/compile/ASST1/vers.o b/kern/compile/ASST1/vers.o
+new file mode 100644
+index 0000000..7a21ecc
+Binary files /dev/null and b/kern/compile/ASST1/vers.o differ
+diff --git a/kern/compile/ASST1/version b/kern/compile/ASST1/version
+new file mode 100644
+index 0000000..1479e19
+--- /dev/null
++++ b/kern/compile/ASST1/version
+@@ -0,0 +1 @@
++65
+diff --git a/kern/compile/ASST1/vfscwd.o b/kern/compile/ASST1/vfscwd.o
+new file mode 100644
+index 0000000..d859c17
+Binary files /dev/null and b/kern/compile/ASST1/vfscwd.o differ
+diff --git a/kern/compile/ASST1/vfsfail.o b/kern/compile/ASST1/vfsfail.o
+new file mode 100644
+index 0000000..632cdaf
+Binary files /dev/null and b/kern/compile/ASST1/vfsfail.o differ
+diff --git a/kern/compile/ASST1/vfslist.o b/kern/compile/ASST1/vfslist.o
+new file mode 100644
+index 0000000..88e53fc
+Binary files /dev/null and b/kern/compile/ASST1/vfslist.o differ
+diff --git a/kern/compile/ASST1/vfslookup.o b/kern/compile/ASST1/vfslookup.o
+new file mode 100644
+index 0000000..9d76ff3
+Binary files /dev/null and b/kern/compile/ASST1/vfslookup.o differ
+diff --git a/kern/compile/ASST1/vfspath.o b/kern/compile/ASST1/vfspath.o
+new file mode 100644
+index 0000000..9f264be
+Binary files /dev/null and b/kern/compile/ASST1/vfspath.o differ
+diff --git a/kern/compile/ASST1/vnode.o b/kern/compile/ASST1/vnode.o
+new file mode 100644
+index 0000000..cb50fbd
+Binary files /dev/null and b/kern/compile/ASST1/vnode.o differ
+diff --git a/kern/compile/ASST1/xordi3.o b/kern/compile/ASST1/xordi3.o
+new file mode 100644
+index 0000000..6391c7c
+Binary files /dev/null and b/kern/compile/ASST1/xordi3.o differ
+diff --git a/kern/include/.synch.h.swp b/kern/include/.synch.h.swp
+new file mode 100644
+index 0000000..31565f3
+Binary files /dev/null and b/kern/include/.synch.h.swp differ
+diff --git a/kern/include/synch.h b/kern/include/synch.h
+index fee3b07..d7c19b6 100644
+--- a/kern/include/synch.h
++++ b/kern/include/synch.h
+@@ -73,8 +73,15 @@ void V(struct semaphore *);
+  * (should be) made internally.
+  */
+ struct lock {
+-        char *lk_name;
+-        // add what you need here
++        char *lk_name;  // this was given 
++  
++	struct thread *lk_owner; // added this to mark the current owner 
++ 	volatile bool is_locked; // how to combine ^^ and <<< to one??
++	// has to include a flag to mark if it is locked!! has to be volatile!
++
++	struct wchan *lk_wchan; // has to include for processes to wait in
++
++	struct spinlock lk_spinlock; // included to protect all these above!!
+         // (don't forget to mark things volatile as needed)
+ };
+ 
+@@ -112,9 +119,13 @@ bool lock_do_i_hold(struct lock *);
+  */
+ 
+ struct cv {
+-        char *cv_name;
+-        // add what you need here
+-        // (don't forget to mark things volatile as needed)
++        char *cv_name;// given to us 
++	
++	struct wchan *cv_wchan;  // a queue for processes to wait in 
++        // (don't forget to mark things volatile as needed) // not needed 
++	// for this project because of the appendices say so :) 
++	
++	struct spinlock cv_spinlock; // protects the queue!
+ };
+ 
+ struct cv *cv_create(const char *name);
+diff --git a/kern/include/test.h b/kern/include/test.h
+index ad3552f..1d027c0 100644
+--- a/kern/include/test.h
++++ b/kern/include/test.h
+@@ -54,6 +54,7 @@ int threadlisttest(int, char **);
+ int threadtest(int, char **);
+ int threadtest2(int, char **);
+ int threadtest3(int, char **);
++int threadtest4(int, char **); 
+ int semtest(int, char **);
+ int locktest(int, char **);
+ int cvtest(int, char **);
+diff --git a/kern/include/thread.h b/kern/include/thread.h
+index d161c8f..d4028fa 100644
+--- a/kern/include/thread.h
++++ b/kern/include/thread.h
+@@ -109,6 +109,11 @@ struct thread {
+ 	bool t_did_reserve_buffers;	/* reserve_buffers() in effect */
+ 
+ 	/* add more here as needed */
++
++	struct thread *child; 
++	struct thread *parent; 
++	struct lock* lk_join; 
++	struct cv* cv_join; 
+ };
+ 
+ /*
+@@ -165,6 +170,7 @@ void thread_yield(void);
+  */
+ void schedule(void);
+ 
++void thread_join(void); 
+ /*
+  * Potentially migrate ready threads to other CPUs. Called from the
+  * timer interrupt.
+diff --git a/kern/main/menu.c b/kern/main/menu.c
+index 33522bb..fe533f6 100644
+--- a/kern/main/menu.c
++++ b/kern/main/menu.c
+@@ -486,6 +486,7 @@ static const char *testmenu[] = {
+ 	"[tt1] Thread test 1                 ",
+ 	"[tt2] Thread test 2                 ",
+ 	"[tt3] Thread test 3                 ",
++	"[tt4] Thread test 4		     ", 
+ #if OPT_NET
+ 	"[net] Network test                  ",
+ #endif
+@@ -595,6 +596,7 @@ static struct {
+ 	{ "tt1",	threadtest },
+ 	{ "tt2",	threadtest2 },
+ 	{ "tt3",	threadtest3 },
++	{ "tt4", 	threadtest4 }, 
+ 	{ "sy1",	semtest },
+ 
+ 	/* synchronization assignment tests */
+diff --git a/kern/test/threadtest.c b/kern/test/threadtest.c
+index be9f282..cae4c2e 100644
+--- a/kern/test/threadtest.c
++++ b/kern/test/threadtest.c
+@@ -144,3 +144,22 @@ threadtest2(int nargs, char **args)
+ 
+ 	return 0;
+ }
++
++int 
++threadtest4(int nargs, char **args)
++{
++
++	(void)nargs; 
++	(void)args; 
++
++	init_sem(); 
++	kprintf("Starting thread test 4...\n"); 
++	runthreads(0); 
++	thread_join();
++	
++	kprintf("\n Thread test 4 done.\n"); 
++
++	 
++	return 0; 
++
++}
+diff --git a/kern/thread/synch.c b/kern/thread/synch.c
+index d083f4b..6d17e6b 100644
+--- a/kern/thread/synch.c
++++ b/kern/thread/synch.c
+@@ -113,7 +113,8 @@ P(struct semaphore *sem)
+ 		 * Exercise: how would you implement strict FIFO
+ 		 * ordering?
+ 		 */
+-		wchan_sleep(sem->sem_wchan, &sem->sem_lock);
++
++		wchan_sleep(sem->sem_wchan, &sem->sem_lock);// left
+         }
+         KASSERT(sem->sem_count > 0);
+         sem->sem_count--;
+@@ -155,7 +156,19 @@ lock_create(const char *name)
+         }
+ 
+         // add stuff here as needed
+-
++	
++	lock->lk_wchan = wchan_create(lock->lk_name); 
++	
++	if(lock->lk_wchan == NULL)
++	{
++		kfree(lock->lk_name); 
++		kfree(lock); 
++	}
++	
++	lock->is_locked = false; 
++	lock->lk_owner = NULL; 
++	spinlock_init(&lock->lk_spinlock); 
++	// added up to here 
+         return lock;
+ }
+ 
+@@ -165,7 +178,12 @@ lock_destroy(struct lock *lock)
+         KASSERT(lock != NULL);
+ 
+         // add stuff here as needed
++	// added below
+ 
++	spinlock_cleanup(&lock->lk_spinlock); 
++	wchan_destroy(lock->lk_wchan); 	
++
++	//kfree(lock->lk_owner); // added 
+         kfree(lock->lk_name);
+         kfree(lock);
+ }
+@@ -173,29 +191,102 @@ lock_destroy(struct lock *lock)
+ void
+ lock_acquire(struct lock *lock)
+ {
+-        // Write this
++        /* 
++		The main goal is to set the flag if no one has the lock!! 
++		Steps:
++		1. Acquire the spinlock for the lock before accessing the member fields 
++			spinlock_acquire(&lock->lk_spinlock)???
++		2. Put the thread to sleep if the lock is not available
++			wchan_sleep internally releases the spinlock
++			Loop over this because other threads can be competing
++			so:
++			if(lock is not available){
++			wchan_sleep(lock->lk_wchan); }
++		3. Set the lock when exiting the loop 
++			lock->is_locked= true; 
++			lock->lk_owner = curthread; 
++		4. Release the spinlock. 
++			spinlock_release(&lock->lk_spinlock); 
++			
++
++	*/
++
++
++	KASSERT(lock != NULL); 
++	KASSERT(curthread->t_in_interrupt == false); 
++	spinlock_acquire(&lock->lk_spinlock); 
++	//KASSERT(lock->lk_owner == curthread); // THIS IS THE CAUSE OF ALL MY PROBLEMS. I HATE THIS SINGLE LINE IT IS THE WORST LINE IN MY ENTIRE CODE OMG SPENT HOURS LOOKING FOR THE REASON MY CODE DIDNT WORK. OMG 
++
++
++//	if(lock_do_i_hold(lock)) //  current thread doesnt have
++  //      {
++    //            spinlock_release(&lock->lk_spinlock);  // want the CPU to rele$
++     //           return;  // return to caller
++      //  }
++//	else {
++
++	while(lock->is_locked)
++	{
++		wchan_sleep(lock->lk_wchan, &lock->lk_spinlock);
++	}
+ 
+-        (void)lock;  // suppress warning until code gets written
++		KASSERT(!lock->is_locked); // panic if the lock isnt locked!!
++		lock->is_locked = true; 
++		lock->lk_owner = curthread; 
++		KASSERT(lock->is_locked); 
++		KASSERT(lock->lk_owner == curthread); 
++	spinlock_release(&lock->lk_spinlock); // forces the CPU to release the lock because its done with the resource  
++
++//        (void)lock;  // suppress warning until code gets written
+ }
+ 
+ void
+ lock_release(struct lock *lock)
+ {
+-        // Write this
+-
+-        (void)lock;  // suppress warning until code gets written
++        KASSERT(lock != NULL); 
++	spinlock_acquire(&lock->lk_spinlock);  // hold so no interferences
++//	KASSERT(lock != NULL);
++	KASSERT(lock->lk_owner == curthread);  
++//	spinlock_acquire(&lock->lk_spinlock);  // hold so no interferences
++	// also to wake the thread holding the lock
++	
++	
++	lock->is_locked = false;
++	lock->lk_owner = NULL;  
++	wchan_wakeone(lock->lk_wchan, &lock->lk_spinlock); 
++	 // if locks owner is the current thread
++	 // set the owner to null , 
++	// wakes the thread of the current lock 
++	
++	spinlock_release(&lock->lk_spinlock); // done with the resource 
++       
++// (void)lock;  // suppress warning until code gets written
+ }
+ 
+ bool
+ lock_do_i_hold(struct lock *lock)
+ {
+-        // Write this
+-
+-        (void)lock;  // suppress warning until code gets written
+-
+-        return true; // dummy until code gets written
++	// bool  true if thread is the current owner of the lock 
++	// means i need to add to the struct lock an owner variable  
++	KASSERT(lock != NULL); 
++
++	spinlock_acquire(&lock->lk_spinlock); 
++	if(lock->lk_owner == curthread)
++	{
++		spinlock_release(&lock->lk_spinlock); 
++		return true;
++	} 
++	spinlock_release(&lock->lk_spinlock); 
++	 return false;
++
++	// this operation will not work !!!! SEND HELP 
++	
++//	  (void)lock;  // suppress warning until code gets written
++
++  //     return true; // dummy until code gets written
+ }
+ 
++
+ ////////////////////////////////////////////////////////////
+ //
+ // CV
+@@ -219,6 +310,15 @@ cv_create(const char *name)
+ 
+         // add stuff here as needed
+ 
++	cv->cv_wchan = wchan_create(cv->cv_name); 
++	if(cv->cv_wchan == NULL)
++	{
++		kfree(cv->cv_name); 
++		kfree(cv); 
++		return NULL; 
++	}
++	spinlock_init(&cv->cv_spinlock); 
++	// added up to here 
+         return cv;
+ }
+ 
+@@ -228,7 +328,9 @@ cv_destroy(struct cv *cv)
+         KASSERT(cv != NULL);
+ 
+         // add stuff here as needed
+-
++	
++	spinlock_cleanup(&cv->cv_spinlock); // added too 
++	wchan_destroy(cv->cv_wchan); // added 
+         kfree(cv->cv_name);
+         kfree(cv);
+ }
+@@ -236,23 +338,77 @@ cv_destroy(struct cv *cv)
+ void
+ cv_wait(struct cv *cv, struct lock *lock)
+ {
+-        // Write this
+-        (void)cv;    // suppress warning until code gets written
+-        (void)lock;  // suppress warning until code gets written
++        /*
++		From Appendix: CV has to be passed in as a parameter bc C do not have implicit parent objects. 
++		Goal: Atomically (without interruptions) put the thread to sleep and release the lock. 
++			AND ACQUIRE THE LOCK BACK WHEN AWOKEN!!!
++
++		Steps:
++		1. Acquire the spinlock for the CV first to ensure atomicity for the following steps:
++			spinlock_acquire(&cv->cv_spinlock)??
++		2. Release the lock
++		3. Put the thread to sleep in the CV's wchan
++		4. Release the Spinlock
++		5. Acquire the lock before completing the function. 
++			wchan_sleep for a similar manipulation. 
++	*/
++
++	KASSERT(cv != NULL);
++	KASSERT(curthread->t_in_interrupt == false); 
++	 //KASSERT(curthread->t_in_interrupt == false);
++	//KASSERT(lock->lk_owner == curthread);
++	if(lock_do_i_hold(lock))
++	{
++		spinlock_acquire(&cv->cv_spinlock); 
++		lock_release(lock); 
++		wchan_sleep(cv->cv_wchan, &cv->cv_spinlock); 
++		spinlock_release(&cv->cv_spinlock); 
++		lock_acquire(lock); 
++	}
++
++        //(void)cv;    // suppress warning until code gets written
++        //(void)lock;  // suppress warning until code gets written
+ }
+ 
+ void
+ cv_signal(struct cv *cv, struct lock *lock)
+ {
+         // Write this
+-	(void)cv;    // suppress warning until code gets written
+-	(void)lock;  // suppress warning until code gets written
++	
++
++	KASSERT(cv != NULL);
++	KASSERT(lock != NULL);
++ 	
++	spinlock_acquire(&cv->cv_spinlock); 
++	//KASSERT(lock->lk_owner == curthread); 
++	
++	if(lock_do_i_hold(lock))
++		wchan_wakeone(cv->cv_wchan, &cv->cv_spinlock);
++	 
++//	lock_acquire(lock); 
++	spinlock_release(&cv->cv_spinlock); 
++
++	//(void)cv;    // suppress warning until code gets written
++//	(void)lock;  // suppress warning until code gets written
+ }
+ 
+ void
+ cv_broadcast(struct cv *cv, struct lock *lock)
+ {
+ 	// Write this
+-	(void)cv;    // suppress warning until code gets written
+-	(void)lock;  // suppress warning until code gets written
++
++	KASSERT(cv != NULL);
++	KASSERT(lock != NULL); 
++	spinlock_acquire(&cv->cv_spinlock); 
++	//KASSERT(lock->lk_owner == curthread);
++	if(lock_do_i_hold(lock))
++	{
++		wchan_wakeall(cv->cv_wchan, &cv->cv_spinlock);
++	}
++	spinlock_release(&cv->cv_spinlock); 
++//	lock_acquire(lock);  
++	
++
++//	(void)cv;    // suppress warning until code gets written
++//	(void)lock;  // suppress warning until code gets written
+ }
+diff --git a/kern/thread/thread.c b/kern/thread/thread.c
+index 8ac3b9d..c361a68 100644
+--- a/kern/thread/thread.c
++++ b/kern/thread/thread.c
+@@ -150,7 +150,12 @@ thread_create(const char *name)
+ 	thread->t_did_reserve_buffers = false;
+ 
+ 	/* If you add to struct thread, be sure to initialize here */
+-
++	
++	thread->child = NULL; 
++	thread->parent = NULL;
++	thread->lk_join = NULL; 
++	thread->cv_join = NULL; 
++ 
+ 	return thread;
+ }
+ 
+@@ -544,6 +549,14 @@ thread_fork(const char *name,
+ 	/* Set up the switchframe so entrypoint() gets called */
+ 	switchframe_init(newthread, entrypoint, data1, data2);
+ 
++
++	//link child to parent 
++
++	curthread->child = newthread; 
++	newthread->parent = curthread; 
++
++	curthread->lk_join = lock_create("lock join"); 
++	curthread->cv_join = cv_create("CV join"); 
+ 	/* Lock the current cpu's run queue and make the new thread runnable */
+ 	thread_make_runnable(newthread, false);
+ 
+@@ -725,6 +738,7 @@ thread_switch(threadstate_t newstate, struct wchan *wc, struct spinlock *lk)
+ 
+ 	/* Clean up dead threads. */
+ 	exorcise();
++	// lmao i love this name hahahahahha
+ 
+ 	/* Turn interrupts back on. */
+ 	splx(spl);
+@@ -799,10 +813,18 @@ thread_exit(void)
+ 	/* Check the stack guard band. */
+ 	thread_checkstack(cur);
+ 
++	if(cur->parent != NULL)
++	{
++		lock_acquire(cur->parent->lk_join); 
++		cur->parent->child = NULL; 
++		cv_signal(cur->parent->cv_join, cur->parent->lk_join); 
++		lock_release(cur->parent->lk_join); 
++	}
++
+ 	/* Interrupts off on this processor */
+         splhigh();
+ 	thread_switch(S_ZOMBIE, NULL, NULL);
+-	panic("braaaaaaaiiiiiiiiiiinssssss\n");
++	panic("braaaaaaaiiiiiiiiiiinssssss\n");   /// LOLOLOLOL
+ }
+ 
+ /*
+@@ -832,6 +854,33 @@ schedule(void)
+ 	 */
+ }
+ 
++void thread_join(void)
++{
++	/*
++		Goal: the parent use the function to wait for the child to complete. 
++		
++		Needs an status to indicate if the child is complete. Child will set when it is terminating. 
++		Parent will check for the status. 
++
++		So we need a lock to make sure we can protect it. 
++
++		A wchan is needed for the parent to sleep and wait. A CV for the parent to be waken up when the child terms. 
++
++
++	 */
++
++	lock_acquire(curthread->lk_join); 
++	
++	// make sure only the parent can enter . 
++	while(curthread->child != NULL)
++	{
++		cv_wait(curthread->cv_join, curthread->lk_join); 
++		//wchan????
++	}
++
++	lock_release(curthread->lk_join); 
++}
++
+ /*
+  * Thread migration.
+  *
+diff --git a/proj02-cfk14d.txt b/proj02-cfk14d.txt
+new file mode 100644
+index 0000000..e69de29
